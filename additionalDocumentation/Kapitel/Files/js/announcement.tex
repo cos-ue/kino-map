@@ -1,0 +1,86 @@
+\subsection{Allgemeines} Diese Datei enhält alle separat für die Ankündigungsseite verwendete Funktionen.
+Die Ausführung des Codes findet im Browser statt.
+\subsection{Funktionen}
+\subsubsection{addAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion legt eine neue Ankündigung an. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{setFaultAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		fieldName & Identifikator eines Eingabefeldes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert ein Eingabefeld für den Nutzer als falsch ausgefüllt. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{resetFaultAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		fieldName & Identifikator eines Eingabefeldes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion entfernt eine Fehlermarkierung von einem Eingabefeld, das Ergebnis ist für den Nutzer sichtbar. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{openEditAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id & Identifikator einer Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion ruft alle Daten zum Bearbeiten einer Ankündigung ab und öffnet das entsprechende Modal. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{saveEditAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion ruft speichert eine bearbeitet Ankündigung und lädt die Seite neu. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{addPreview}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion öffnet die Vorschau des Inhaltes der Ankündigung beim Hinzufügen einer neuen Ankündigung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{editPreview}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion öffnet die Vorschau des Inhaltes der Ankündigung beim Ändern einer Ankündigung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{setAktivionStateAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id    & Identifikator einer Ankündigung \\ \hline
+		state & Aktivierungsstatus einer Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt den Aktivierungsstatus einer Ankündigung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{aktivateAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id    & Identifikator einer Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktiviert eine Ankündigung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deaktivateAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id    & Identifikator einer Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion deaktiviert eine Ankündigung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{openAnnouncementPreview}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id    & Identifikator einer Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion öffnet die Previewansicht einer Ankündigung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.

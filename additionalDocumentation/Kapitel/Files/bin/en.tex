@@ -1,0 +1,64 @@
+\label{lang:en}
+\subsection{Allgemeines} Diese Datei enthält ein Array mit Werten um eine Mehrsprachlichkeit in Teilen zu ermöglichen. Speziell beinhaltet diese Datei die Deutsche Version
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & keiner \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Aufbau}
+\subsubsection{Array}
+Das Nachfolgend zu sehende Array beinhaltet alle verwendeten Schlüssel um eine Mehrsprachlichkeit zu ermöglichen. Viele der Texte sind jedoch nicht durch einen Schlüssel hinterlegt. Diese Datei verwendet nicht alle Schlüssel und ist somit momentan nicht nutzbar.
+\begin{lstlisting}[language=php]
+$lang = array(
+	"Lehrer"=>"Teacher",
+	"NeuesBenutzerkonto"=>"New User",
+	"Erstellen"=>"Create",
+	"Klassenname"=>"Class Name",
+	"NeueKlasse"=>"New Class",
+	"NeuesPasswort"=>"New Password",
+	"Rolle"=>"Role",
+	"Benutzername"=>"User Name",
+	"Vorname"=>"Forename",
+	"Nachname"=>"Surname",
+	"Löschen"=>"Delete",
+	"Klassdel"=>"Delete Class",
+	"CSV"=>"CSV Upload",
+	"NeuesBenutzerkonto"=>"New User",
+	"Benutzerkontenverwalten"=>"Manage User Accounts",
+	"Kommentare"=>"My Comments",
+	"Speichern"=>"Save",
+	"Spielstätte"=>"Cinema",
+	"Koordinaten"=>"Coordinates",
+	"Auswahl"=>"Choose an image (* .png or * .jpeg).",
+	"FotoVideo"=>"Picture or Video",
+	"Biographie"=>"Biography",
+	"Besonderheiten"=>"Particularity",
+	"Epoche"=>"Epoch",
+	"Adresse"=>"Adress",
+	"Längengrad"=>"Longitude",
+	"Breitengrad"=>"Latitude",
+	"Todesdatum"=>"Date of death",
+	"Name"=>"Name",
+	"Geburtsdatum"=>"Date of birth",
+	"Poi"=>"Add POI",
+	"Abmelden"=>"Logout",
+	"Suche"=>"Search",
+	"Klasse"=>"Class",
+	"Sprachen"=>"Language",
+	"Benutzerkonten"=>"User accounts",
+	"infos" => "Personal space",
+	"lang_en" => "English",
+	"lang_de" => "German"
+);
+\end{lstlisting}
+\subsubsection{Besonderheiten}
+Aktuell werden keine neuen Schlüssel hinzugefügt und die Ermöglichung einer Mehrsprachlichkeit nicht verfolgt.

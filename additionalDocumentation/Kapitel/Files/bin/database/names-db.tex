@@ -1,0 +1,108 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Namen-Tabelle benutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{getNamesByPoiId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Namen eines Interessenpunktes ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{insertNameOfPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		\$start   & Startjahr \\ \hline
+		\$end     & Endjahr \\ \hline
+		\$name    & Name des Kinos \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Interessenpunkt einen Namen hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{getUsernameByNameId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$Nameid & Identifikator des Namens \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt den Ersteller eines Namen ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort ist eine Zeichenkette.
+\subsubsection{updateName}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator des Namens \\ \hline
+		\$name  & Name des Kinos \\ \hline
+		\$start & Startjahr \\ \hline
+		\$end   & Endjahr \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert einen Namen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{deleteName}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name\_id & Identifikator des Namens \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Namen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionStateNamesByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator des Namens \\ \hline
+		\$state & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Namen als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.

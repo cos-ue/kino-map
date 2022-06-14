@@ -1,0 +1,108 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Saalanzahl-Tabelle nutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{insertCinemasOfPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id       & Identifikator eines Interessenpunktes \\ \hline
+		\$start         & Startjahr \\ \hline
+		\$end           & Endjahr \\ \hline
+		\$cinema\_count & Saalanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine neue Sallanzahl hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es wird eine Antwort zurück gegeben.
+\subsubsection{getCinemasByPoiId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid       & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle zu einem Interessenpunkt zugehörigen Saalanzahlen ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCreatorByCinemasID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$cinemas\_id       & Identifikator einer Saalanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt den Ersteller einer Saalanzahl ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteCinemas}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$cinemas\_id       & Identifikator einer Saalanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eine Saalanzahl. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updateCinemas}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id       & Identifikator einer Saalanzahl \\ \hline
+		\$cinemas  & Saalanzahl \\ \hline
+		\$start    & Startjahr \\ \hline
+		\$end      & Endjahr \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert eine Saalanzahl. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es wird eine Antwort zurück gegeben.
+\subsubsection{updateDeletionStateCinemasById}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id       & Identifikator einer Saalanzahl \\ \hline
+		\$state    & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt den Löschungsstatus einer Saalanzahl. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es wird eine Antwort zurück gegeben.

@@ -1,0 +1,104 @@
+\subsection{Allgemeines} Diese Datei enthält alle für eine Authentifizierung notwendigen Funktionen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{getAuth}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name        & Name des zu authentifizierenden Nutzers \\ \hline
+		\$password    & durch Nutzer eingegebenes Passwort \\ \hline
+		\$forceRemote & Fragt Nutzerdaten ausschlielich aus {\glqq COSP\grqq} ab \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft die Authentizität eines Nutzers anhand seines eindeutigen Nutzernamens und des eingebenen Passwortes. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\paragraph{Vorgehensweise} Zuerst prüft die Funktion, ob sich der gegebene Nutzer bereits in diesem Modul bekannt ist. Sollte dies nicht der Fall sein, so wird nach dem Nutzer in {\glqq COSP\grqq} gesucht, wird er dort gefunden und er das korrekte Passwort eingegeben hat, so wird automatisiert ein Modulbenutzer erstellt und der Nutzer angemeldet. Sollte er dort nicht gefunden werden oder das Passwort falsch sein, so wird die Authentisierung abgelehnt. Sollte der Nutzer im eigenen System vorhanden sein, so wird zunächst das Passwort mit dem Hash in der Datenbank geprüft, sollte dies Fehlschlagen, so ruft sich die Funktion rekursiv selbst auf und Prüft mit den in {\glqq COSP\grqq} enthaltenen Daten.
+\subsubsection{logLogin}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$type        & Gibt an ob Nutzer {\glqq guest\grqq} oder {\glqq user\grqq} ist \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion dient der Erfassung statistischer Nutzerdaten. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit statistischen Nutzungsdaten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{getGuestAuth}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion führt einen Login als Gast durch. 
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{GuestAuthData}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion liefert alle notwendigen Daten für einen Login als Gast. 
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Funktion liefert ein Strukturiertes Array zurück.
+\subsubsection{setSessionData}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$userData    & Array mit Daten des Nutzers \\ \hline
+		\$external    & gibt an, ob Daten extern angefragt werden sollen aus {\glqq COSP\grqq} \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{userData} Das Array besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name      & Nutzername/Nickname \\ \hline
+		firstname & Vorname des Nutzers \\ \hline
+		lastname  & Nachname des Nutzers \\ \hline
+		email     & E-Mailadresse des Nutzers \\ \hline
+		role      & Array mit Rollendaten des Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{role} Das Array besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		rolevalue & Wert der Rolle \\ \hline
+		rolename  & Name der Rolle \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt die Serverseitigen Session-Daten für die Anmeldung des Nutzers.
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{getRemoteUserData}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name & Nickname oder Nutzername eines Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt Benutzerdaten aus {\glqq COSP\grqq} ab. Die Funktion nutzt folgenden Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

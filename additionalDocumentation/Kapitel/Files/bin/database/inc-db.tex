@@ -1,0 +1,48 @@
+\subsection{Allgemeines} Diese Datei Einbindungen aller benötigten Dateien für den Datenbankzugriff.
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Einbindungen}
+\subsubsection{Grundlegendes}
+Nachfolgend zu sehender Code-Block bindet alle benötigten Dateien in korrekter Reihenfolge ein. Beim Einbinden neuer Dateien, sind diese stets an das Ende zu schreiben, außer die Dateien sind Umstrukturierungen bereits existenten Dateien.
+\begin{lstlisting}[language=php]
+require_once 'bin/database/basic-db.php';
+require_once 'bin/database/statistics-basic-dbfunctions.php';
+require_once 'bin/database/user.php';
+require_once 'bin/database/poi-db.php';
+require_once 'bin/database/poi-val.php';
+require_once 'bin/database/poi-comment.php';
+require_once 'bin/database/validate-hist-adr.php';
+require_once 'bin/database/validate-curr-adr.php';
+require_once 'bin/database/validate-hist.php';
+require_once 'bin/database/validate-type.php';
+require_once 'bin/database/validate-name.php';
+require_once 'bin/database/validate-operator.php';
+require_once 'bin/database/validate-timespan.php';
+require_once 'bin/database/validate-poi-story.php';
+require_once 'bin/database/validate-seats.php';
+require_once 'bin/database/validate-cinemas.php';
+require_once 'bin/database/operators-db.php';
+require_once 'bin/database/hist-adr-db.php';
+require_once 'bin/database/names-db.php';
+require_once 'bin/database/seats-db.php';
+require_once 'bin/database/cinemas-db.php';
+require_once 'bin/database/poi-story-db.php';
+require_once 'bin/database/logging.php';
+require_once 'bin/database/poi-picture-db.php';
+require_once 'bin/database/validate-poi-picture.php';
+require_once 'bin/database/cinema-type-db.php';
+require_once 'bin/database/statistics-poi-db.php';
+require_once 'bin/database/statistics-comments-db.php';
+require_once 'bin/database/announcement-db.php';
+require_once 'bin/database/source-type-db.php';
+require_once 'bin/database/source-relation-db.php';
+require_once 'bin/database/poi-source-db.php';
+\end{lstlisting}
+\subsubsection{Besonderheit}
+Die Einbindungen sind immer vom Hauptordner aus zu erreichen und auch relativ zu diesem anzugeben.

@@ -1,0 +1,73 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen für statistische Datenbankabfragen der Interessenpunkt-Tabelle.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{getPoiCreateStatisticalDataLastWeeks}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Wochen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Interessenpunkten für den in Wochen angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoiCreateStatisticalDataLastMonth}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Monate \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Interessenpunkten für den in Monaten angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoiCreateStatisticalDataLastYear}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Jahre \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Interessenpunkten für den in Jahren angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoiCreateStatisticalDataLastDays}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Tage \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten  zu Interessenpunkten für den in Tagen angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

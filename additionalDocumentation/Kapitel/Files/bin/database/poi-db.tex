@@ -1,0 +1,305 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Interessenpunkt-Tabelle benutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{insertPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$data & Array mit Eingabewerten \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$data}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name        & Name des Interessenpunktes \\ \hline
+		lng         & Längengrad \\ \hline
+		lat         & Breitengrad \\ \hline
+		city        & Ortsname der aktuellen Adresse \\ \hline
+		postalcode  & Postleitzahl der aktuellen Adresse \\ \hline
+		streetname  & Straßenname der aktuellen Adresse \\ \hline
+		housenumber & Hausnummer der aktuellen Adresse \\ \hline
+		picture     & alphanumerischer Identifikator des Hauptbildes \\ \hline
+		start       & Startjahr der Nutzung \\ \hline
+		end         & Endjahr der Nutzung \\ \hline
+		category    & Kategorie des Interessenpunktes \\ \hline
+		history     & Geschichte des Interessenpunktes \\ \hline
+		ctype       & Typ des Interessenpunktes \\ \hline
+		duty        & Legt fest, ob das Kino aktuell noch in Betrieb ist \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einen neuen Interessenpunkt hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updatePoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$data & Array mit Eingabewerten \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$data}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name        & Name des Interessenpunktes \\ \hline
+		lng         & Längengrad \\ \hline
+		lat         & Breitengrad \\ \hline
+		city        & Ortsname der aktuellen Adresse \\ \hline
+		postalcode  & Postleitzahl der aktuellen Adresse \\ \hline
+		streetname  & Straßenname der aktuellen Adresse \\ \hline
+		housenumber & Hausnummer der aktuellen Adresse \\ \hline
+		start       & Startjahr der Nutzung \\ \hline
+		end         & Endjahr der Nutzung \\ \hline
+		history     & Geschichte des Interessenpunktes \\ \hline
+		id          & Identifikator des Interessenpunktes \\ \hline
+		ctype       & Typ des Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert einen Interessenpunkt. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updatePoiCreatorTimespan}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator des Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Erstellungszeitpunkt und den Ersteller der Zeitspanne des Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{updatePoiCreatorCurrentAddress}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator des Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Erstellungszeitpunkt und den Ersteller der aktuellen Adresse des Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{updatePoiCreatorHistory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator des Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Erstellungszeitpunkt und den Ersteller der Geschichte des Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{updatePoiCreatorType}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator des Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Erstellungszeitpunkt und den Ersteller der Typs des Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{updatePoiCreator}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator des Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Erstellungszeitpunkt und den Ersteller des Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{getAllPois}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$api & Gibt an, ob Aufrufer eine API ist \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Interessenpunkt Daten ab, welche für den Nutzer sichtbar sind. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAllPoisTitle}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter,
+\paragraph{Beschreibung} Die Funktion fragt die Titel aller Interessenpunkte ab, welche für den Nutzer sichtbar sind. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Informationen zu einem bestimmten Interessenpunkt ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Interessenpunkt. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{selectMore}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Informationen zu einem bestimmten Interessenpunkt für das {\glqq Mehr Anzeigen\grqq}-Modal ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCurrentAddresses}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt alle aktuellen Adressen ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{PersonalAreaCollection}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt das Minimale und das Maximale Jahr für die Anzeige des Sliders ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAllPoisOfUser}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$username & Nutzername des Nutzers für den Funktion ausgeführt werden soll. \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Interessenpunkte ab, welche einem Nutzer zugeordnet werden können. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updatePicForPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$newtoken & neuer alphanumerischer Identifikator eines Bildes \\ \hline
+		\$poiid    & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert das Hauptbild eines Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{getAllPoisWithCertainPicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$PicToken & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Interessenpunkte mit einem bestimmten Hauptbild ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updateDeletionStatePoiByPoiid}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator des Interessenpunktes \\ \hline
+		\$state & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Interessenpunkt als gelöscht. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionPicStatePoiByPoiid}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator des Interessenpunktes \\ \hline
+		\$state & Status der Löschung des Hauptbildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert das Hauptbild eines Interessenpunktes als gelöscht. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.

@@ -1,0 +1,163 @@
+\chapter{API-Spezifikation}\label{rapi}
+\section{Verwaltungs-API}
+\subsection{Befehlsübersicht}
+\begin{longtable}[H]{|c|p{12cm}|}
+		\hline
+		\textbf{Api-Befehl} & \textbf{Kurzbeschreibung}              \\ \hline
+		dau                 & Deaktiviere bestimmten Nutzer          \\ \hline
+		rau                 & Aktiviere bestimmten Nutzer            \\ \hline
+		rpt                 & Entferne Referenzen zu bestimmten Bild \\ \hline
+		dus                 & Entferne Referenzen zu bestimmter Geschichte \\ \hline
+		rst                 & Wiederherstellen von Referenzen zu bestimmter Geschichte \\ \hline
+		rpc                 & Wiederherstellen von Referenzen zu bestimmtem Bild \\ \hline
+\end{longtable}
+\newpage
+\subsection{Befehle}
+\subsubsection{Nutzerdeaktivierung}
+\paragraph{Kurzbeschreibung}Dieser API-Request wird dazu genutzt einen bereits aktivierten Nutzer wieder zu deaktivieren. Dies ist Notwendig, da das Modul {\glqq Kino Karte\grqq} keine eigene Nutzerverwaltung besitzt.
+\paragraph{Anfrage}Folgende Daten werden zu Anfrage benötigt:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		type                & string            & dau                & Deaktiviere Nutzer                                                                                                      \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		username            & string            &                    & Nutzername des zu deaktivierenden Nutzers                                                                               \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Antwort}Die Antwort ist wie folgt aufgebaut:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		result              & string            &                    & Bei erfolgreichen Request {\glqq ack\grqq}                                                                            \\ \hline
+		code                & int               &                    & Bei erfolgreichen Request {\glqq 0\grqq} \\ \hline
+		type                & string            & dau                & Deaktiviere Nutzer                                                                                                      \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		username            & string            &                    & Nutzername des zu deaktivierenden Nutzers                                                                               \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Nutzeraktivierung}
+\paragraph{Kurzbeschreibung}Dieser API-Request wird dazu genutzt einen deaktivierten Nutzer wieder zu aktivieren. Dies ist Notwendig, da das Modul {\glqq Kino Karte\grqq} keine eigene Nutzerverwaltung besitzt.
+\paragraph{Anfrage}Folgende Daten werden zu Anfrage benötigt:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Paramtername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		type                & string            & rau                & Aktiviere Nutzer                                                                                                      \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		username            & string            &                    & Nutzername des zu aktivierenden Nutzers                                                                               \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Antwort}Die Antwort ist wie folgt aufgebaut:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		result              & string            &                    & Bei erfolgreichen Request {\glqq ack\grqq}                                                                            \\ \hline
+		code                & int               &                    & Bei erfolgreichen Request {\glqq 0\grqq} \\ \hline
+		type                & string            & rau                & Aktiviere Nutzer                                                                                                      \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		username            & string            &                    & Nutzername des zu deaktivierenden Nutzers                                                                               \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Entfernen von Bildreferenzen}
+\paragraph{Kurzbeschreibung}Dieser API-Request wird dazu genutzt um Links auf gelöschte Bilder zu entfernen. Dies sichert die Konsistenz der Datenbanken.
+\paragraph{Anfrage}Folgende Daten werden zu Anfrage benötigt:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Paramtername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		type                & string            & rpt                & Entferne Referenzen zu bestimmten Bild \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		picToken            & string            &                    & Bildtoken der zu entfernenden Referenzen \\ \hline
+		override			& bool              &                    & Optional: TRUE: Verweise werden direkt gelöscht; FALSE: Verweise werden als gelöscht markiert\\ \hline   
+	\end{tabular}
+\end{table}
+\paragraph{Antwort}Die Antwort ist wie folgt aufgebaut:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		result              & string            &                    & Bei erfolgreichen Request {\glqq ack\grqq}                                                                            \\ \hline
+		code                & int               &                    & Bei erfolgreichen Request {\glqq 0\grqq} \\ \hline
+		type                & string            & rpt                & Entferne Referenzen zu bestimmten Bild \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		picToken            & string            &                    & Bildtoken der zu entfernenden Referenzen \\ \hline   
+		override			& bool              &                    & Optional: TRUE: Verweise werden direkt gelöscht; FALSE: Verweise werden als gelöscht markiert\\ \hline   
+	\end{tabular}
+\end{table}
+\subsubsection{Entfernen von Referenzen auf Geschichten}
+\paragraph{Kurzbeschreibung}Dieser API-Request wird dazu genutzt um Links auf gelöschte Geschichten zu entfernen. Dies sichert die Konsistenz der Datenbanken.
+\paragraph{Anfrage}Folgende Daten werden zu Anfrage benötigt:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Paramtername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		type                & string            & dus                & Entferne Referenzen zu bestimmter Geschichte \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		StoryToken          & string            &                    & Identifikator der zu entfernenden Geschichte \\ \hline
+		overwrite           & bool              &                    & Wahr, wenn Story final gelöscht wird \\ \hline
+	\end{tabular} 
+\end{table}
+\paragraph{Antwort}Die Antwort ist wie folgt aufgebaut:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		result              & string            &                    & Bei erfolgreichen Request {\glqq ack\grqq}                                                                            \\ \hline
+		code                & int               &                    & Bei erfolgreichen Request {\glqq 0\grqq} \\ \hline
+		type                & string            & dus                & Entferne Referenzen zu bestimmter Geschichte \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		StoryToken          & string            &                    & Identifikator der zu entfernenden Geschichte \\ \hline       
+		overwrite           & bool              &                    & Wahr, wenn Story final gelöscht wird \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Wiederherstellen von Referenzen auf Geschichten}
+\paragraph{Kurzbeschreibung}Dieser API-Request wird dazu genutzt um Links auf Geschichten wiederherzustellen. Dies sichert die Konsistenz der Datenbanken.
+\paragraph{Anfrage}Folgende Daten werden zu Anfrage benötigt:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Paramtername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		type                & string            & rst                & Entferne Referenzen zu bestimmten Bild \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		StoryToken          & string            &                    & Identifikator der wiederherzustellenden Geschichte \\ \hline
+	\end{tabular} 
+\end{table}
+\paragraph{Antwort}Die Antwort ist wie folgt aufgebaut:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		result              & string            &                    & Bei erfolgreichen Request {\glqq ack\grqq}                                                                            \\ \hline
+		code                & int               &                    & Bei erfolgreichen Request {\glqq 0\grqq} \\ \hline
+		type                & string            & rst                & Entferne Referenzen zu bestimmten Bild \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		StoryToken          & string            &                    & Identifikator der wiederherzustellenden Geschichte \\ \hline       
+	\end{tabular}
+\end{table}
+\subsubsection{Wiederherstellen von Referenzen auf Bild}
+\paragraph{Kurzbeschreibung}Dieser API-Request wird dazu genutzt um Links auf Bilder wiederherzustellen. Dies sichert die Konsistenz der Datenbanken.
+\paragraph{Anfrage}Folgende Daten werden zu Anfrage benötigt:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Paramtername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		type                & string            & rpc                & Stelle Referenzen zu bestimmten Bild wieder her \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		picToken            & string            &                    & Identifikator des wiederherzustellenden Bildes \\ \hline
+	\end{tabular} 
+\end{table}
+\paragraph{Antwort}Die Antwort ist wie folgt aufgebaut:
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|p{6.5cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Datentyp} & \textbf{Konstante} & \textbf{Kurzbeschreibung}                                                                                               \\ \hline
+		result              & string            &                    & Bei erfolgreichen Request {\glqq ack\grqq}                                                                            \\ \hline
+		code                & int               &                    & Bei erfolgreichen Request {\glqq 0\grqq} \\ \hline
+		type                & string            & rpc                & Stelle Referenzen zu bestimmten Bild wieder her \\ \hline
+		token               & string            &                    & Eingehender API-Aufruf benötigt Token der in config::\$CSTOKEN zu finden ist \\ \hline
+		picToken            & string            &                    & Identifikator des wiederherzustellenden Bildes \\ \hline       
+	\end{tabular}
+\end{table}

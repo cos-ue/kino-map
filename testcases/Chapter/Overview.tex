@@ -1,0 +1,281 @@
+\begin{usecase}
+	\addtitle{Karte aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{nicht Authentifiziert, Authentifiziert, Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Karte\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] mittels Navbar
+			\begin{enumerate}
+				\checkeditem Menü {\glqq Kartenfunktionen\grqq} öffnen
+				\checkeditem {\glqq Karte\grqq}-Button betätigen
+			\end{enumerate}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bestenliste öffnen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Menü {\glqq Kartenfunktionen\grqq} öffnen
+		\checkeditem {\glqq Bestenliste\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eintragsverwaltung öffnen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Menü {\glqq Kartenfunktionen\grqq} öffnen
+		\checkeditem {\glqq Eintragsverwaltung\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{nicht Authentifiziert, Authentifiziert, Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Geschichten\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] mittels Navbar
+		\begin{enumerate}
+			\checkeditem Menü {\glqq Material\grqq} öffnen
+			\checkeditem {\glqq Geschichten\grqq}-Button betätigen
+		\end{enumerate}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Archiv aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{nicht Authentifiziert, Authentifiziert, Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Archiv\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] mittels Navbar
+		\begin{enumerate}
+			\checkeditem Menü {\glqq Material\grqq} öffnen
+			\checkeditem {\glqq Archiv\grqq}-Button betätigen
+		\end{enumerate}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{COSP aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{keine}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq COSP\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Statistiken aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Menü {\glqq Admintools\grqq} öffnen
+		\checkeditem {\glqq Statistik\grqq}-Button betätigen
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Impressum aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Kontakt\grqq}-Button betätigen
+		\checkeditem {\glqq Impressum\grqq}-Button betätigen
+	}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Datenschutz aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Kontakt\grqq}-Button betätigen
+		\checkeditem {\glqq Datenschutz\grqq}-Button betätigen
+	}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Kontakt aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Kontakt\grqq}-Button betätigen
+		\checkeditem {\glqq Kontakt\grqq}-Button betätigen
+	}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Ankündigungen Verwalten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Admintools\grqq} öffnen
+		\checkeditem {\glqq Ankündigungen\grqq}-Button betätigen
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}

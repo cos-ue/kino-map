@@ -1,0 +1,108 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Betreiber-Tabelle benutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{getOpertorsByPoiId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sucht alle Betreiber eines Interessenpunktes. Die Funktion nutzt hierzu folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{insertOperator}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id  & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		\$start    & Startjahr \\ \hline
+		\$end      & Endjahr \\ \hline
+		\$operator & Name des Betreibers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Interessenpunkt einen neuen Betreiber hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt eine Antwort.
+\subsubsection{getCreatorByOperatorID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$operator\_id & Identifikator des Betreibers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sucht der Ersteller des gegebenen Betreibers. Die Funktion nutzt hierzu folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist eine Zeichenkette.
+\subsubsection{deleteOperator}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$operator\_id  & Identifikator des Betreibers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Betreiber. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt eine Antwort.
+\subsubsection{updateOperator}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id       & Identifikator des Betreibers \\ \hline
+		\$operator & Name des Betreibers \\ \hline
+		\$start    & Startjahr \\ \hline
+		\$end      & Endjahr \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert einen Betreiber. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt eine Antwort.
+\subsubsection{updateDeletionStateOperatorsById}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator des Betreibers \\ \hline
+		\$state & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Betreiber als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt eine Antwort.

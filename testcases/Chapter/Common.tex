@@ -1,0 +1,205 @@
+\begin{usecase}
+	\addtitle{Abmelden} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Abmelden\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Persönlichen Bereich öffnen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Persönlicher Bereich\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eigenen Interessenpunkt löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Persönlichen Bereich öffnen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Intressenpunkt {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eigenen Interessenpunkt bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Persönlichen Bereich öffnen, Intressenpunkt Bearbeiten}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Intressenpunkt {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Dann weiter ab Punkt 2 des Testcase {\glqq Intressenpunkt Bearbeiten\grqq}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eigenen Interessenpunkt auf Karte anzeigen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Persönlichen Bereich öffnen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Intressenpunkt {\glqq Auf der Karte anzeigen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eigenen Kommentar löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Persönlichen Bereich öffnen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Kommentar {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eigenen Kommentar bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Persönlichen Bereich öffnen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Kommentar {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Kommentar ändern
+		\checkeditem {\glqq Absenden\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Eigenen Kommentar auf Karte anzeigen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Persönlichen Bereich öffnen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Kommentar {\glqq Auf der Karte anzeigen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}

@@ -1,0 +1,88 @@
+\subsection{Allgemeines} Diese Datei enthält Funktionen zum Abfragen der Tabelle zum erfassen statistischer Nutzer.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{insertLogUniqueVisitors}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$ip   & Ip-Adresse des Aufrufers \\ \hline
+		\$type & Typ der Nutzung (Gast oder Nutzer) \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion trägt eine neue Nutzung in die Tabelle ein. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit statistischen Nutzerdaten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Funktion gibt eine Antwort zurück.
+\subsubsection{getStatisticalDataLastWeeks}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Wochen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Nutzern für den in Wochen angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit statistischen Nutzerdaten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getStatisticalDataLastMonth}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Monate \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Nutzern für den in Monaten angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit statistischen Nutzerdaten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getStatisticalDataLastYear}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Jahre \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Nutzern für den in Jahren angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit statistischen Nutzerdaten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getStatisticalDataLastDays}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$number & Anzahl der Tage \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt statistische Daten zu Nutzern für den in Tagen angegeben Zeitraum ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit statistischen Nutzerdaten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

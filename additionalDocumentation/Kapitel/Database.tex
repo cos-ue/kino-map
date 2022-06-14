@@ -1,0 +1,1059 @@
+\chapter{Datenbank-Spezifikation}
+\section{Tabellen-Übersicht}
+\begin{longtable}[H]{|l|p{9cm}|}
+	\hline
+	\textbf{Api-Befehl} 			& \textbf{Kurzbeschreibung}              \\ \hline
+	kino\_\_address\_validate 		& Validierungsdaten für historische Adressen \\ \hline
+	kino\_\_announcement            & Tabelle mit Daten für Ankündigungen \\ \hline
+	kino\_\_cinema\_type\_validate	& Validierungsdaten für den Typ einer Spielstätte \\ \hline
+	kino\_\_cinema\_types 			& Typen einer Spielstätte \\ \hline
+	kino\_\_cinemas 				& Saalanzahlen der Interessenpunkte \\ \hline
+	kino\_\_cinemas\_validate 		& Validierungsdaten zu Saalanzahlen von Interessenpunkten\\ \hline
+	kino\_\_comments 				& Kommentare der Interessenpunkte \\ \hline
+	kino\_\_current\_adr\_validate 	& Validierungsdaten zu aktuellen Adressen von Interessenpunkten \\ \hline
+	kino\_\_hist\_adr 				& Historische Adressen zu Interessenpunkten \\ \hline
+	kino\_\_history\_validate 		& Validierungsdaten zur Historie von Interessenpunkten \\ \hline
+	kino\_\_name\_validate 			& Validierungsdaten zu Namen von Interessenpunkten \\ \hline
+	kino\_\_names 					& Namen von Interessenpunkten \\ \hline
+	kino\_\_operator\_validate 		& Validierungsdaten zu Betreibern von Interessenpunkten \\ \hline
+	kino\_\_operators 				& Betreiber von Interessenpunkten \\ \hline
+	kino\_\_poi\_pictures 			& Bild-Interessenpunkt-Verknüpfungen\\ \hline
+	kino\_\_poi\_pictures\_validate & Validierungsdaten zu Bild-Verknüpfungen von Interessenpunkten \\ \hline
+	kino\_\_poi\_sources            & Quelleninformationen zu Interessempunkt \\ \hline
+	kino\_\_poi\_story 				& Geschichte--Interessenpunkt-Verknüpfungen \\ \hline
+	kino\_\_poi\_story\_validate 	& Validierungsdaten zu Geschichtsverknüpfungen von Interessenpunkten \\ \hline
+	kino\_\_pois 					& Grundlegende Daten zu Interessenpunkten \\ \hline
+	kino\_\_seats 					& Sitzplatzanzahlen von Interessenpunkten\\ \hline
+	kino\_\_seats\_validate 		& Validierungsdaten zu Sitzplatzanzahlen von Interessenpunkten \\ \hline
+	kino\_\_source\_relation        & Tabelle mit Namen von Bezugsinformationen zu Quellen \\ \hline
+	kino\_\_source\_type            & Typen von Quellen \\ \hline
+	kino\_\_timespan\_validate 		& Validierungsdaten zum Betriebszeitraum von Interessenpunkten \\ \hline
+	kino\_\_user-login 				& Nutzerdaten \\ \hline
+	kino\_\_validate 				& Validierungsdaten von Interessenpunkten \\ \hline
+	kino\_\_visitors 				& Statistische Aufruferdaten \\ \hline
+\end{longtable}
+\newpage
+\section{Erläuterung}
+\subsection{Abkürzungen}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Abkürzung} & \textbf{Bedeutung} \\ \hline
+		PRI & Primary Key \\ \hline
+		FOR & Foreign Key / Fremdschlüssel \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{Aufbau}
+In den folgenden Abschnitten wird zuerst etwas über die Verwendung der Tabelle gesagt. Anschließend ist noch der Aufbau detailliert geschildert. Das Feld {\glqq Null\grqq} besagt, ob dieser Wert in der Tabelle den Wert {\glqq null\grqq} annehmen darf. Im Feld {\glqq Key\grqq} ist zu sehen ob dieser Wert als Schlüssel verwendet wird. Sofern dies ein Fremdschlüssel ({\glqq FOR\grqq}) ist, ist in der nächsten Tabelle zu finden auf welches Feld welcher Tabelle dieser sich bezieht.
+\section{Tabellen}
+\subsection{kino\_\_address\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen von historischen Adressen zu speichern. Hierzu wird die ID der historischen Adresse und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment  \\ \hline
+		address\_id & int & NO &  & FOR &  \\ \hline
+		uid & int & NO &  & FOR &  \\ \hline
+		value & int & NO &  &  &  \\ \hline
+		date & timestamp & NO & current\_timestamp() &  &  \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		address\_id & Identifikator der validierten Adresse \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		address\_id & kino\_\_hist\_adr.ID \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_announcement}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Daten für Ankündigungen zu speichern.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment  \\ \hline
+		title & mediumtext & NO &  &  &  \\ \hline
+		content & longtext & NO &  &  &  \\ \hline
+		start & date & NO &  &  &  \\ \hline
+		end & date & NO &  &  &  \\ \hline
+		creator & int & NO &  & FOR &  \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Ankündigung \\ \hline
+		title & Titel der Ankündigung \\ \hline
+		content & Inhalt der Ankündigung \\ \hline
+		start & Startzeitpunkt, ab wann die Ankündigung angezeigt wird \\ \hline
+		end & Endzeitpunkt, ab wann die Ankündigung nicht mehr Angezeigt wird \\ \hline
+		creator & Ersteller der Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_cinema\_type\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen zum Typ eines Interessenpunktes zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		poi\_id & int & NO &  & FOR &  \\ \hline
+		uid & int & NO &  & FOR &  \\ \hline
+		value & int & NO &  &  &  \\ \hline
+		date & timestamp & NO & current\_timestamp() &  &  \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		poi\_id & Identifikator des Interessenpunktes \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_pois.poi\_id \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_cinema\_types}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle verschiedenen Typen eines Interessenpunktes aufzulisten. Diese Tabelle dient als Referenz für die Interessenpunkte.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		name & mediumtext & NO &  &  &  \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Typs \\ \hline
+		name & Name des Typs \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+In dieser Tabelle sind keine Fremdschlüssel vorhanden.
+\subsection{kino\_\_cinemas}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um die Saalanzahlen von Interessenpunkten zu speichern. Hierzu wird die ID des Interessenpunktes benötigt und die Nutzer-ID des anlegenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		ID & int & NO &  & PRI & auto\_increment \\ \hline
+		POI\_ID & int & NO &  & FOR &  \\ \hline
+		cinemas & text & NO &  &  &  \\ \hline
+		Start & int & YES & NULL &  &  \\ \hline
+		End & int & YES & NULL &  &  \\ \hline
+		creator & int & NO &  & FOR &  \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  &  \\ \hline
+		source & text & YES & NULL &  &  \\ \hline
+		points\_received & tinyint & NO & 0 &  &  \\ \hline
+		deleted & tinyint & NO & 0 &  &  \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		ID & Identifikator des Eintrags der Saalanzahl \\ \hline
+		POI\_ID & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		cinemas & Saalanzahl \\ \hline
+		Start & Beginn dieser Saalanzahl \\ \hline
+		End & Ende dieser Saalanzahl \\ \hline
+		creator & Nutzeridentifikator des Erstellers des Eintrags \\ \hline
+		creationdate & Erstellungs- beziehungsweise Änderungsdatum \\ \hline
+		source & Möglichkeit der Quellenangabe \\ \hline
+		points\_received & Status Erhalt der Punkte (Veraltet) \\ \hline
+		deleted & Status des Löschens \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		POI\_ID & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_cinemas\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen von Saalanzahlen zu speichern. Hierzu wird die ID der Saalanzahl und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		cinemas\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		cinemas\_id & Identifikator der validierten Saalanzahl \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		cinemas\_id & kino\_\_cinemas.ID \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_comments}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Kommentare zu Interessenpunkten zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		comment\_id & int & NO &  & PRI & auto\_increment \\ \hline
+		timestamp & datetime & NO & current\_timestamp() &  & \\ \hline
+		user\_id & int & NO &  & FOR & \\ \hline
+		poi\_id & int & NO &  & FOR & \\ \hline
+		content & text & NO &  &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		comment\_id & Identifikator des Kommentars \\ \hline
+		timestamp & Zeitstempel des Erstellen oder Änderns \\ \hline
+		user\_id & Nutzeridentifikator des Erstellers \\ \hline
+		poi\_id & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		content & Inhalt des Kommentars \\ \hline
+		deleted & Status der Löschung des Kommentars \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_pois.poi\_id \\ \hline
+		user\_id & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_current\_adr\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen zur aktuellen Adresse eines Interessenpunktes zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		poi\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		poi\_id & Identifikator der zugehörigen Interessenpunktes \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_pois.poi\_id \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_hist\_adr}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um historische Adresseb zu Interessenpunkten zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		ID & int & NO &  & PRI & auto\_increment \\ \hline
+		POI\_ID & int & NO &  & FOR & \\ \hline
+		City & text & YES & NULL &  & \\ \hline
+		Postalcode & varchar & YES & NULL &  & \\ \hline
+		Streetname & text & YES & NULL &  & \\ \hline
+		Housenumber & text & YES & NULL &  & \\ \hline
+		start & int & YES & NULL &  & \\ \hline
+		end & int & YES & NULL &  & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  & \\ \hline
+		source & text & YES & NULL &  & \\ \hline
+		points\_received & tinyint & NO & 0 &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		ID & Identifikator der historischen Adresse \\ \hline
+		POI\_ID & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		City & Ortsname der Adresse \\ \hline
+		Postalcode & Postleitzahl der Adresse \\ \hline
+		Streetname & Straßenname der Adresse \\ \hline
+		Housenumber & Hausnummer der Adresse \\ \hline
+		start & Begin der Nutzung der Adresse \\ \hline
+		end & Ende der Nutzung der Adresse \\ \hline
+		creator & Nutzeridentifikator des Erstellers \\ \hline
+		creationdate & Erstellungsdatum \\ \hline
+		source & Quellenangabe \\ \hline
+		points\_received & Status des Erhalts von Punkten (veraltet) \\ \hline
+		deleted & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		POI\_ID & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_history\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen der Geschichte eines Interessenpunktes zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		poi\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		poi\_id & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_pois.poi\_id \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_name\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen von Namen der Interessenpunkte zu speichern. Hierzu wird die ID des Namens und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		name\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		name\_id & Identifikator des validierten Namens \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		name\_id & kino\_\_names.ID \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_names}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Namen von Interessenpunkten zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		ID & int & NO &  & PRI & auto\_increment \\ \hline
+		POI\_ID & int & NO &  & FOR & \\ \hline
+		Name & text & NO &  &  & \\ \hline
+		Start & int & YES & NULL &  & \\ \hline
+		End & int & YES & NULL &  & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  & \\ \hline
+		source & text & YES & NULL &  & \\ \hline
+		points\_received & tinyint & NO & 0 &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		ID & Identifikator des Namens \\ \hline
+		POI\_ID & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		Name & Name \\ \hline
+		Start & Start der Nutzung des Namens \\ \hline
+		End & Ende der Nutzung des Namens \\ \hline
+		creator & Nutzeridentifikator des Erstellers des Eintrags \\ \hline
+		creationdate & Erstellungsdatum \\ \hline
+		source & Quelle der Information \\ \hline
+		points\_received & Status der Punkte für Namen (veraltet) \\ \hline
+		deleted & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		POI\_ID & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_operator\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen von Betreibern der Interessenpunkte zu speichern. Hierzu wird die ID des Betreibers und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		operator\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		operator\_id & Identifikator des validierten Betreibers \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		operator\_id & kino\_\_operators.ID \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_operators}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Betreiber von Interessenpunkten zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		ID & int & NO &  & PRI & auto\_increment \\ \hline
+		POI\_ID & int & NO &  & FOR & \\ \hline
+		Operator & text & NO &  &  & \\ \hline
+		start & int & YES & NULL &  & \\ \hline
+		end & int & YES & NULL &  & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  & \\ \hline
+		source & text & YES & NULL &  & \\ \hline
+		points\_received & tinyint & NO & 0 &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		ID & Identifikator des Betreibers \\ \hline
+		POI\_ID & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		Operator & Name des Betreibers \\ \hline
+		start & Start der Nutzung durch Betreiber \\ \hline
+		end & Ende der Nutzung durch Betreiber \\ \hline
+		creator & Nutzeridentifikator des Erstellers des Eintrags \\ \hline
+		creationdate & Erstellungsdatum \\ \hline
+		source & Quelle der Information \\ \hline
+		points\_received & Status der Punktevergabe (veraltet) \\ \hline
+		deleted & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		POI\_ID & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_poi\_pictures}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Bilder Interessenpunkten zu zuordnen. Hierzu wird die ID des Interessenpunktes, der Identifikator des Bildes und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		picture\_id & varchar & NO &  & FOR & \\ \hline
+		poi\_id & int & NO &  & FOR & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+		poiDel & tinyint & NO & 0 &  & \\ \hline
+		picDel & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Links zwischen Interessenpunkt und Bild \\ \hline
+		picture\_id & alphanumerischer Identifikator des Bildes \\ \hline
+		poi\_id & Identifikator des Interessenpunktes \\ \hline
+		creator & Nutzeridentifikator des Erstellers des Links \\ \hline
+		creationdate & Erstellungs- beziehungsweise Änderungsdatum \\ \hline
+		deleted & Status der Löschung des Links \\ \hline
+		poiDel & Status der Restriktion durch Status der Löschung des Interessenpunkt \\ \hline
+		picDel & Status der Restriktion durch Status der Löschung des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+		picture\_id & Ist ein Fremdschlüssel in der {\glqq COSP\grqq}-Datenbank \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_poi\_pictures\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen für einen Link zwischen einem Interessenpunkt und einem Bild zu speichern. Hierzu wird die ID des Links und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		link-id-poi-pic & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		link-id-poi-pic & Identifikator der validierten Links zwischen einem Interessenpunkt und einem Bild \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		link-id-poi-pic & kino\_\_poi\_pictures.id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_poi\_sources}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Geschichten Interessenpunkten zu zuordnen. Hierzu wird die ID des Interessenpunktes, der Identifikator der Geschichte und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		poiid & int & NO &  & FOR & \\ \hline
+		source & mediumtext & NO &  &  & \\ \hline
+		typeid & int & NO &  & FOR & \\ \hline
+		relationid & int & NO &  & FOR & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Quelle \\ \hline
+		poiid & Identifikator des zugehörigen Interessenpunktes\\ \hline
+		source & Textuelle Beschreibung der Quelle \\ \hline
+		typeid & Identifikator des Typs der Quelle \\ \hline
+		relationid & Identifikator der Tabelle mit Namen des Bezugs der Quelle \\ \hline
+		creator & Nutzeridentifikator des erstellenden Nutzers \\ \hline
+		creationdate & Erstellungs- beziehungsweise Änderungsdatum \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poiid & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+		typeid & kino\_\_source\_type.id \\ \hline
+		relationid & kino\_\_source\_relation.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_poi\_story}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Geschichten Interessenpunkten zu zuordnen. Hierzu wird die ID des Interessenpunktes, der Identifikator der Geschichte und die Nutzer-ID benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		poi\_id & int & NO &  & FOR & \\ \hline
+		story\_token & varchar & NO &  &  & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & timestamp & NO & current\_timestamp() &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+		poiDel & tinyint & NO & 0 &  & \\ \hline
+		storyDel & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Links zwischen Interessenpunktes und Geschichte \\ \hline
+		poi\_id & Identifikator des zugehörigen Interessenpunktes\\ \hline
+		story\_token & alphanumerischer Identifikator der zugehörigen Geschichte \\ \hline
+		creator & Nutzeridentifikator des erstellenden Nutzers \\ \hline
+		creationdate & Erstellungs- beziehungsweise Änderungsdatum \\ \hline
+		deleted & Status der Löschung des Links zwischen einem Interessenpunkt und einer Geschichte \\ \hline
+		poiDel & Status der Restriktion durch Status der Löschung des Interessenpunkt \\ \hline
+		storyDel & Status der Restriktion durch Status der Löschung der Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_pois.poi\_id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+		story\_token & Ist ein Fremdschlüssel in der {\glqq COSP\grqq}-Datenbank \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_poi\_story\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen für einen Link zwischen einem Interessenpunkt und einer Geschichte zu speichern. Hierzu wird die ID des Links und die Nutzer-ID des validierenden
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		story\_poi\_link\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		story\_poi\_link\_id & Identifikator des validierten Links zwischen einer Geschichte und einem Interessenpunkt \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		story\_poi\_link\_id & kino\_\_poi\_story.id \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_pois}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle grundlegenden Daten eines Interessenpunktes zu speichern. Hierzu wird die Nutzer-ID des anlegenden benötigt.
+\subsubsection{Inhalt}
+\begin{longtable}[H]{|c|c|c|c|c|p{2.9cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		poi\_id & int & NO &  & PRI & auto\_increment \\ \hline
+		name & varchar & NO &  &  & \\ \hline
+		lng & double & NO &  &  & \\ \hline
+		lat & double & NO &  &  & \\ \hline
+		City & text & YES & NULL &  & \\ \hline
+		Postalcode & varchar & YES & NULL &  & \\ \hline
+		Streetname & text & YES & NULL &  & \\ \hline
+		Housenumber & text & YES & NULL &  & \\ \hline
+		picture & varchar & YES & NULL &  & \\ \hline
+		start & int & YES & NULL &  & \\ \hline
+		end & int & YES & NULL &  & \\ \hline
+		category & int & NO & 0 &  & \\ \hline
+		history & text & YES & NULL &  & \\ \hline
+		type & int & YES & NULL & FOR & \\ \hline
+		user\_id & int & NO &  & FOR & \\ \hline
+		creationDate & datetime & NO & current\_timestamp() &  & \\ \hline
+		creator\_timespan & int & YES & NULL & FOR & \\ \hline
+		creationdate\_timespan & datetime & NO & current\_timestamp() &  & \\ \hline
+		creator\_currentAddress & int & YES & NULL & FOR & \\ \hline
+		creationdate\_currentAddress & datetime & NO & current\_timestamp() &  & \\ \hline
+		creator\_history & int & YES & NULL & FOR & \\ \hline
+		creatoiondate\_history & datetime & NO & current\_timestamp() &  & \\ \hline
+		creator\_type & int & YES & NULL & FOR & \\ \hline
+		creationdate\_type & datetime & NO & current\_timestamp() &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+		deletedPic & tinyint & NO & 0 &  & \\ \hline
+\end{longtable}
+\subsubsection{Beschreibung}
+\begin{longtable}[H]{|c|p{11cm}|}
+	\hline
+	\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+	poi\_id & Identifikator des Interessenpunktes \\ \hline
+	name & primärer Name des Interessenpunktes \\ \hline
+	lng & Längengrad des Interessenpunktes \\ \hline
+	lat & Breitengrad des Interessenpunktes \\ \hline
+	City & Ortsname der aktuellen Adresse \\ \hline
+	Postalcode & Postleitzahl der aktuellen Adresse \\ \hline
+	Streetname & Straßenname der aktuellen Adresse \\ \hline
+	Housenumber & Hausnummer der aktuellen Adresse \\ \hline
+	picture & alphanumerischer Identifikator des zugewiesenen Hauptbildes \\ \hline
+	start & Start der Nutzungsdauer des Interessenpunktes \\ \hline
+	end & Ende der Nutzungsdauer des Interessenpunktes \\ \hline
+	category & numerische Kategorie des Interessenpunktes \\ \hline
+	history & Geschichte des Interessenpunktes \\ \hline
+	type & Identifikator des Typ des Interessenpunktes \\ \hline
+	user\_id & Nutzeridentifikator des erstellenden Nutzers \\ \hline
+	creationDate & Datum der Erstellung der Stammdaten des Interessenpunktes \\ \hline
+	creator\_timespan & Nutzeridentifikator des Erstellers oder Änderers der Nutzungszeitspanne des Interessenpunktes \\ \hline
+	creationdate\_timespan & Zeitstempel des Erstellens oder des Änderns der Nutzungszeitspanne des Interessenpunktes \\ \hline
+	creator\_currentAddress & Nutzeridentifikator des Erstellers oder Änderers der aktuellen Adresse des Interessenpunktes \\ \hline
+	creationdate\_currentAddress & Zeitstempel des Erstellens oder des Änderns der aktuellen Adresse des Interessenpunktes \\ \hline
+	creator\_history & Nutzeridentifikator des Erstellers oder Änderers der Geschichte des Interessenpunktes \\ \hline
+	creatoiondate\_history & Zeitstempel des Erstellens oder des Änderns der Geschichte des Interessenpunktes \\ \hline
+	creator\_type & Nutzeridentifikator des Erstellers oder Änderers des Typs des Interessenpunktes \\ \hline
+	creationdate\_type & Zeitstempel des Erstellens oder des Änderns des Typs des Interessenpunktes \\ \hline
+	deleted & Status der Löschung \\ \hline
+	deletedPic & Status der Löschung des Hauptbildes \\ \hline
+\end{longtable}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		user\_id & kino\_\_user-login.id \\ \hline
+		creator\_timespan & kino\_\_user-login.id \\ \hline
+		creator\_currentAddress & kino\_\_user-login.id \\ \hline
+		creator\_history & kino\_\_user-login.id \\ \hline
+		creator\_type & kino\_\_user-login.id \\ \hline
+		picture & Ist ein Fremdschlüssel in der {\glqq COSP\grqq}-Datenbank \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_seats}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um die Sitzplatzanzahl von Interessenpunkten zu speichern. Hierzu wird die ID des Interessenpunktes benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		ID & int & NO &  & PRI & auto\_increment \\ \hline
+ 		POI\_ID & int & NO &  & FOR & \\ \hline
+		seats & text & NO &  &  & \\ \hline
+		Start & int & YES & NULL &  & \\ \hline
+		End & int & YES & NULL &  & \\ \hline
+		creator & int & NO &  & FOR & \\ \hline
+		creationdate & datetime & NO & current\_timestamp() &  & \\ \hline
+		source & text & YES & NULL &  & \\ \hline
+		points\_received & tinyint & NO & 0 &  & \\ \hline
+		deleted & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		ID & Identifikator des Sitzanzahl \\ \hline
+		POI\_ID & Identifikator des zugehörigen Interessenpunktes \\ \hline
+		seats & Sitzplatzanzahl \\ \hline
+		Start & Start der Nutzung mit Sitzplatzanzahl \\ \hline
+		End & Ende der Nutzung mit Sitzplatzanzahl \\ \hline
+		creator & Nutzeridentifikator des erstellenden Nutzers \\ \hline
+		creationdate & Zeitstempel der Erstellung beziehungsweise Änderung\\ \hline
+		source & Quelle der Information \\ \hline
+		points\_received & Status der Punktevergabe (veraltet) \\ \hline
+		deleted & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		POI\_ID & kino\_\_poi\_story.id \\ \hline
+		creator & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_seats\_validate}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Validierungen von Sitzplatzanzahlen zu speichern. Hierzu wird die ID der Sitzplatzanzahl und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		seats\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		seats\_id & Identifikator der validierten Sitzplatzanzahl \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+		seats\_id & kino\_\_seats.ID \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_source\_relation}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um den Bezug von Quellen zu speichern.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		name & mediumtext & NO &  &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Typs einer Quelle \\ \hline
+		name & Name des Bezugs einer Quelle \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_source\_type}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um Typen von Quellen zu speichern.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		name & mediumtext & NO &  &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Typs einer Quelle \\ \hline
+		name & Name des Typs einer Quelle \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_user-login}
+\subsubsection{Verwendung} Diese Tabelle wird verwendet um alle Daten zu Nutzern zu speichern.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		name & varchar & NO &  & UNI & \\ \hline
+		password & longtext & NO &  &  & \\ \hline
+		firstname & mediumtext & YES & NULL &  & \\ \hline
+		lastname & mediumtext & YES & NULL &  & \\ \hline
+		email & mediumtext & YES & NULL &  & \\ \hline
+		deaktivate & tinyint & NO & 0 &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Nutzers \\ \hline
+		name & Nutzername beziehungsweise Login-Name \\ \hline
+		password & Hash des Passwortes des Nutzers \\ \hline
+		firstname & Vorname des Nutzers (optional) \\ \hline
+		lastname & Nachname des Nutzers (optional) \\ \hline
+		email & E-Mailadresse des Nutzers \\ \hline
+		deaktivate & Status der Deaktivierung des Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+In dieser Tabelle sind keine Fremdschlüssel vorhanden.
+\subsection{kino\_\_validate}
+\subsubsection{Verwendung}  Diese Tabelle wird verwendet um alle Validierungen von Stammdaten eines Interessenpunktes zu speichern. Hierzu wird die ID des Interessenpunktes und die Nutzer-ID des validierenden Nutzers benötigt.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		poi\_id & int & NO &  & FOR & \\ \hline
+		uid & int & NO &  & FOR & \\ \hline
+		value & int & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator der Validierung \\ \hline
+		poi\_id & Identifikator des validierten Interessenpunktes \\ \hline
+		uid & Identifikator des validierenden Nutzers \\ \hline
+		value & Wertung der Validierung \\ \hline
+		date & Zeitstempel der Validierung \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Fremd-Feld} \\ \hline
+		poi\_id & kino\_\_poi\_story.id \\ \hline
+		uid & kino\_\_user-login.id \\ \hline
+	\end{tabular}
+\end{table}
+\subsection{kino\_\_visitors}
+\subsubsection{Verwendung}  Diese Tabelle wird verwendet um alle Zugriffe auf die Website für statistische Zwecke zu speichern.
+\subsubsection{Inhalt}
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Datentyp} & \textbf{Null} & \textbf{Standardwert} & \textbf{Key}   & \textbf{Besonderheiten} \\ \hline
+		id & int & NO &  & PRI & auto\_increment \\ \hline
+		ip & varchar & NO &  &  & \\ \hline
+		date & timestamp & NO & current\_timestamp() &  & \\ \hline
+		type & varchar & NO &  &  & \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Beschreibung}
+\begin{table}[H]
+	\begin{tabular}{|c|p{12cm}|}
+		\hline
+		\textbf{Feldname} & \textbf{Beschreibung} \\ \hline
+		id & Identifikator des Eintrags \\ \hline
+		ip & IP-Adresse des Aufrufers \\ \hline
+		date & Zeitstempel des Aufrufens \\ \hline
+		type & Nutzertyp des Aufrufers (Nutzer oder Gast) \\ \hline
+	\end{tabular}
+\end{table}
+\subsubsection{Fremdschlüssel}
+In dieser Tabelle sind keine Fremdschlüssel vorhanden.

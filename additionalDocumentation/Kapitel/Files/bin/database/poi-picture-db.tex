@@ -1,0 +1,204 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Tabelle mit Links zwischen Bildern und Interessenpunkten benutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{insertPoiPicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$pictureId & alphanumerischer Identifikator eines Bildes \\ \hline
+		\$PoiId     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einen neuen Link zwischen einem Bild und einem Interessenpunkt hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{getPicturesForPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Links zwischen einem bestimmten Interessenpunkt und Bildern ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getLinkIdPoiPic}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+		\$picid & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt den Identifikator eines Links zwischen einem bestimmten Interessenpunkt und einem bestimmten Bilder ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getLinkIdsForPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle IDs von Links zwischen einem bestimmten Interessenpunkt und Bildern ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCreatorByPoiPicId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$pic\_poi\_id & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt den Ersteller eines Links zwischen einem Interessenpunkt und einem Bild ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist eine Zeichenkette.
+\subsubsection{deleteCertainPoiPicLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$lid & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Interessenpunkt und einem Bild. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{getPoisForPic}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$token & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Links zwischen Interessenpunkten und einem bestimmten Bild ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getLinkIdsPoiPic}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$picid & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle IDs von Links zwischen Interessenpunkten und einem bestimmten Bild ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updateDeletionStateLinkPoiPicByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		\$state & Status der Löschung des Links \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Link zwischen einem Interessenpunkt und einem Bild als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionPoiStateLinkPoiPicByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		\$state & Status der Löschung des Links \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Link zwischen einem Interessenpunkt und einem Bild als gelöscht, aufgrund eines gelöschten Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionPicStateLinkPoiPicByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		\$state & Status der Löschung des Links \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Link zwischen einem Interessenpunkt und einem Bild als gelöscht, aufgrund eines gelöschten Bildes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{LinkPoiPicRestictedPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt ab, ob eine Restriktion der Wiederherstellung aufgrund eines gelöschten Interessenpunktes besteht. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist ein Boolean.
+\subsubsection{LinkPoiPicRestictedPic}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt ab, ob eine Restriktion der Wiederherstellung aufgrund eines gelöschten Bildes besteht. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist ein Boolean.

@@ -1,0 +1,111 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen für statistische Datenbankabfragen der Interessenpunkt-Tabelle.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{addUser}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name      & Nutzername \\ \hline
+		\$pwd\_hash & Hash des Passwortes \\ \hline
+		\$email     & E-Mailadresse des Nutzers \\ \hline
+		\$firstname & Vorname des Nutzers (optional) \\ \hline
+		\$lastname  & Nachname des Nutzers (optional) \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einen neuen Nutzer ein. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateUser}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name      & Nutzername \\ \hline
+		\$pwd\_hash & Hash des Passwortes \\ \hline
+		\$email     & E-Mailadresse des Nutzers \\ \hline
+		\$firstname & Vorname des Nutzers (optional) \\ \hline
+		\$lastname  & Nachname des Nutzers (optional) \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert einen Nutzer. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{getUserData}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name & Nutzername \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Daten eines Nutzers ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getUserDataById}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Identifikator eines Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Daten eines Nutzers ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAllUsernames}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$onlyLocal & Fragt nur lokale Nutzernamen ab \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt Nutzernamen ab, auch die Nutzernamen von {\glqq COSP\grqq}. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updateDeaktivate}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$username      & Nutzername \\ \hline
+		\$state         & Status der Deaktivierung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion deaktiviert einen Nutzer. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.

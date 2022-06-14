@@ -1,0 +1,65 @@
+\documentclass[a4paper, 10pt, oneside, draft]{article}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc} %Schöner trennen
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{float}
+%\usepackage{kpfonts}
+\usepackage{lipsum}
+\newcounter{mcounter}
+\newcounter{boxcounter}
+\usepackage{svg}
+\newcommand\showmycounter{\stepcounter{mcounter}\themcounter}
+\usepackage{usecases}
+
+\begin{document}
+\title{Testcases \\ \normalsize{Citizen Science Platform {\glqq COSP\grqq}, Modul {\glqq Kino Karte\grqq}} }
+\date{\today}
+\author{Projektteam \\
+	\normalsize{
+		\begin{tabular}[t]{ll}
+			Version:  & \quad Beta 1.5.0 \\[1.2ex]
+		\end{tabular}
+	}
+}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\section{Login-Seite und Registrierung}
+\input{Chapter/LoginPage}
+\newpage
+\section{Übersichtsseite}
+\input{Chapter/Overview}
+\newpage
+\section{Bildarchiv}
+\input{Chapter/Material}
+\newpage
+\section{Kartenfunktionen}
+\input{Chapter/MapFunktions}
+\input{Chapter/MapFunktionsAdminFkt}
+\newpage
+\section{Biographien}
+\input{Chapter/Biographien}
+\newpage
+\section{Statistiken}
+\input{Chapter/Statistics}
+\newpage
+\section{Administrative Tools}
+\input{Chapter/adminTools}
+\newpage
+\section{Allgemein}
+\input{Chapter/Common}
+\newpage
+\section{Kontakt}
+\input{Chapter/Contact}
+
+\end{document}
+

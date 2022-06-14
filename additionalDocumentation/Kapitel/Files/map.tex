@@ -1,0 +1,10 @@
+\subsection{Allgemeines} Diese Datei zeigt eine Karte mit allen für den Nutzer sichtbaren eingetragenen Interessenpunkten an.
+Die Datei ist direkt durch den Nutzer aufrufbar. Sie setzt auch die entsprechende Konstante und bindet alle notwendigen Dateien ein:
+\begin{lstlisting}[language=php]
+	define('NICE_PROJECT', true);
+	require_once "bin/inc.php";
+\end{lstlisting}
+\subsection{Allgemeines}
+Die Seite besteht aus einer Karte, auf welcher Interessenpunkte mit entsprechenden Daten vorhanden sind. Es besteht auch die Möglichkeit, neue Interessenpunkte ein zu tragen. Zu bereits bestehenden Interessenpunkten können auch zusätzliche Informationen, wie zum Beispiel die Anzahl der Sitzplätze in einem bestimmten Zeitraum, die Anzahl der Kinosäle in einem bestimmten Zeitraum oder auch die Betreiber, hinzugefügt werden.
+\subsection{Besonderheiten}
+Die Seite lädt auch das Hauptbild eines Interessenpunktes auf {\glqq COSP\grqq} hoch.

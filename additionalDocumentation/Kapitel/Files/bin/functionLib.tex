@@ -1,0 +1,1221 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche an multiplen Stellen verwendet werden und daher nicht klar zugeordnet werden können.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{generateHeader}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$Login     & Gibt an, ob Nutzer eingeloggt ist. \\ \hline
+		\$lg        & Array für Mehrsprachigkeit (siehe \autoref{lang:de} oder \autoref{lang:en}) \\ \hline
+		\$map       & Gibt an, ob einbindende Seite Karte ist \\ \hline
+		\$loginpage & Gibt an, ob einbindende Seite Login- beziehungsweise Logout-Seite ist \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion erzeugt die Navbar sowie mehrfach verwendete Modals. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird direkt Ausgegeben.
+\subsubsection{dump}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$data  & Daten für var\_dump \\ \hline
+		\$level & Optionale Angabe des Debuglevels, wird mit Angabe aus Konfiguration verglichen , siehe \autoref{config:debug-level} \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion dient der Ausgabe von Ergebnissen von Funktionen zu Entwicklungszwecken. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Konfigurationsdatei
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird direkt Ausgegeben.
+\subsubsection{Redirect}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$url       & Leitet die Anfrage auf eine andere Seite weiter \\ \hline
+		\$permanent & Legt fest, ob Weiterleitung permanent ist. \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion leitet den Aufrufer auf eine andere Seite weiter und beendet die Ausführung des aktuellen PHP-Scriptes. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird direkt Ausgegeben.
+\subsubsection{permissionDenied}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$string & Optionale Angab des Grundes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion verhindert ein weiteres Ausführen des PHP-Scriptes und gibt einen entsprechenden HTTP-Statuscode zurück. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird direkt Ausgegeben.
+\subsubsection{generateHeaderTags}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$additional & Optional ein zu bindende Daten \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$additional}Das Array enthält Einträge mit folgenden Elementen:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		type    & Typ der Datei ({\glqq link\grqq} für zum Beispiel CSS-Files oder {\glqq script\grqq} für zum Beispiel javaScript-Files ) \\ \hline
+		rel     & Gibt den Rel-Tag eines HTML-Link Elements an \\ \hline
+		href    & Gibt die Position der Datei an \\ \hline
+		hrefmin & Minimierte Version der Datei \\ \hline
+		typeval & Gibt den Typ der Datei an (zum Beispiel: {\glqq text/javascript\grqq}) \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion dient der Generierung von HTML-Head Elementen und der zentralen Pflege der eingebundenen Dateien. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird direkt Ausgegeben.
+\paragraph{Besonderheiten} Die Einbindung zusätzlicher Dateien erfolgt in der im Array angegebenen Reihenfolge mittels:
+\begin{lstlisting}[language=php]
+foreach ($additional as $line) {
+	switch ($line['type']) {
+		case 'link':
+			if (isset($line['typeval']) === false || $line['typeval'] === "") {
+				echo '<link rel="' . $line['rel'] . '" href="' . $line['href'] . '" >';
+			} else {
+				echo '<link rel="' . $line['rel'] . '" type="' . $line['typeval'] . '" href="' . $line['href'] . '" >';
+			}
+			break;
+		case 'script':
+			echo '<script type="' . $line['typeval'] . '" src="' . $line['href'] . '" ></script>';
+			break;
+	}
+}
+\end{lstlisting}
+\subsubsection{decode\_json}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$string & Eingabe des JSON als Zeichenkette \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion decodiert Daten im JSON-Format in PHP-Arrays. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{checkPoiExists}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$POIID & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft die Existenz eines Interessenpunktes. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als Boolean an den Aufrufer zurückgegeben.
+\subsubsection{remoteLogin}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name & Nutzername, dessen Daten abgefragt werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt die vollständigen Nutzerdaten aus {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{remoteRole}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name              & Nutzername, dessen Rolle abgefragt werden sollen \\ \hline
+		\$ignoreDeaktivatet & Ignoriert Freischaltungsstatus des Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt die Rangdaten eines Nutzers aus {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{addRemoteUser}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$Username  & Nutzername des neuen Nutzers\\ \hline
+		\$EMail     & E-Mailadresse des neuen Nutzers \\ \hline
+		\$pwd       & Passwort als Hash \\ \hline
+		\$firstname & Vorname des neuen Nutzers \\ \hline
+		\$lastname  & Nachname des neuen Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einen neuen Nutzer zu {\glqq COSP\grqq} hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getRemoteAllUsernames}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt alle Nutzernamen aus {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item 
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{UploadPicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$title      & Titel des Bildes \\ \hline
+		\$desc       & Beschreibung des Bildes \\ \hline
+		\$filepath   & Lokaler Pfad zum Bild \\ \hline
+		\$ftype      & Gibt den Dateityp des Bildes an \\ \hline
+		\$username   & Nutzername des hochladenden Nutzers \\ \hline
+		\$source     & Quellenangabe (optional) \\ \hline
+		\$sourceType & Identifikator des Typs der Quelle (optional) \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion lädt ein Bild auf {\glqq COSP\grqq} hoch. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getRemoteSeccode}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$pictureToken & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt Daten zum Laden eines bestimmten Bildes bei {\glqq COSP\grqq} an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getRemotePictureList}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt Daten zum Laden aller Bilder bei {\glqq COSP\grqq} an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{ApiCall}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$params       & Array mit Parametern des API-Aufrufs \\ \hline
+		\$type         & Typ des API-Aufrufs \\ \hline
+		\$file\_upload & Gibt an, ob eine Datei hochgeladen werden soll \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$params}Das Array besteht aus Key-Value-Paaren.
+\paragraph{Beschreibung} Die Funktion führt einen API-Aufruf an {\glqq COSP\grqq} aus. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Konfigurationsdatei
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Es können auch Daten an {\glqq COSP\grqq} gesendet werden. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{checkMailAddress}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$email & zu prüfende E-Mailadresse \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft, ob die angegebene Zeichenkette eine E-Mailadresse darstellt. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{inspectPassword}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$PasswordField1Val & Inhalt des ersten Passwortfeldes \\ \hline
+		\$PasswordField2Val & Inhalt des zweiten Passwortfeldes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft, ob die angegebenen Inhalt der Passworteingabe Felder übereinstimmen und den geforderten Kriterien entsprechen. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.\\
+\subsubsection{checkPermission}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$requiredPermission & erforderlicher Freigabewert \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft, ob ein Nutzer eine angegebene Berechtigungsstufe besitzt. Sollte der Nutzer nicht die geforderte Berechtigungsstufe besitzen so wird die Ausführung des PHP-Scriptes beendet. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getRemoteRank}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$username & Nutzername, dessen Rang abgefragt werden soll \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt den Rang eines Nutzers in {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getRanktypes}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt alle verfügbaren Ränge in {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getRanklist}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt eine Rangliste für dieses Modul in {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{addRankPoints}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$username & Nutzername zu welchem Punkte hinzugefügt werden sollen \\ \hline
+		\$points   & hinzuzufügende Punkte \\ \hline
+		\$reason   & Begründung der Punkte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Nutzer Rangpunkte hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationValue}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$name & Nutzername zu welchem Rolle abgefragt werden soll \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion bestimmt den Validierungswert des aktuellen Nutzers. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+	\item Konfigurationsdatei
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung einem Interessenpunkt hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Interessenpunkten
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validateTimeSpanPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zur Zeitspanne eines Interessenpunkt hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zur Zeitspanne von Interessenpunkten
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validateCurrentAddressPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zur aktuellen Adresse eines Interessenpunkt hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zur aktuellen Adresse von Interessenpunkten
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validateHistoryPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zur Geschichte eines Interessenpunkt hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zur Geschichte von Interessenpunkten
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoiName}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$nameid & Identifikator eines Namens \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zu einem Namen hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Namen
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoiOperator}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$opertorid & Identifikator eines Betreibers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zu einem Betreiber hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Betreibern
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoiHistAddress}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$histAddrId & Identifikator einer historischen Adresse \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zu einer historischen Adresse hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu historischen Adressen
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoiStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$story\_poi\_id & Identifikator eines Links zwischen einer Geschichte und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine Validierung zu einem Link zwischen einem Interessenpunkt und einer Geschichte hinzu und vergibt Rangpunkte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Links zwischen Geschichten und Interessenpunkten
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidatedByPOI}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt alle Validierungswerte für alle Interessenpunkte ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoisForUser}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt alle Interessenpunkte, welche für den Nutzer freigegeben sind, ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Tabelle mit Validierungsdaten zu Intressenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoisForUser}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt die Titel aller Interessenpunkte, welche für den Nutzer freigegeben sind, ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Tabelle mit Validierungsdaten zu Intressenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Interessenpunkten, welche bereits durch den Nutzer validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Intressenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForTimeSpans}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Interessenpunkten, bei welchen bereits durch den Nutzer die Zeitspanne validiert wurde. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Zeitspannen von Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForCurrentAddress}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Interessenpunkten, bei welchen bereits durch den Nutzer die aktuelle Adresse validiert wurde. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu aktuellen Adressen von Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForHistory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Interessenpunkten, bei welchen bereits durch den Nutzer die Geschichte validiert wurde. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zur Geschichte von Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForPoiNames}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Namen, welche bereits durch den Nutzer die validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Namen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForPoiOperators}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Betreibern, welche bereits durch den Nutzer die validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Betreibern
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForPoiHistAddresses}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von historischen Adressen, welche bereits durch den Nutzer die validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu historischen Adressen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForLinkPoiStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Links zwischen Interessenpunkten und Geschichten, welche bereits durch den Nutzer die validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Links zwischen Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAllStoriesData}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt Daten für das abrufen aller für das Modul verfügbaren Geschichten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{addUserStoryRemote}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$json & Daten der Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält Elemente nach \autoref{api:NewStoryAdd} und \autoref{api-functions:addUserStory}.
+\paragraph{Beschreibung} Die Funktion fügt eine neue Geschichte zu {\glqq COSP\grqq} hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePOIComplete}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Interessenpunkt mitsamt aller zugehöriger Daten. Die Funktion hat Auswirkungen auf:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Kommentar-Tabelle
+	\item Saalanzahl-Tabelle
+	\item Sitzplatzanzahl-Tabelle
+	\item Namen-Tabelle
+	\item Betreiber-Tabelle
+	\item Tabelle mit historischen Adressen
+	\item Tabelle mit Links zwischen Interessenpunkten und Bildern
+	\item Tabelle mit Links zwischen Interessenpunkten und Geschichten
+	\item Tabelle mit Validierungsinformationen zu Interessenpunkten
+	\item Tabelle mit Validierungsinformationen zu Saalanzahlen
+	\item Tabelle mit Validierungsinformationen zu Sitzplatzanzahlen
+	\item Tabelle mit Validierungsinformationen zu Namen
+	\item Tabelle mit Validierungsinformationen zu historischen Adressen
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Interessenpunkten und Bildern
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restorePOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt einen als gelöscht markierten Interessenpunkt mitsamt aller zugehöriger Daten wieder her. Die Funktion hat Auswirkungen auf:
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Kommentar-Tabelle
+	\item Saalanzahl-Tabelle
+	\item Sitzplatzanzahl-Tabelle
+	\item Namen-Tabelle
+	\item Betreiber-Tabelle
+	\item Tabelle mit historischen Adressen
+	\item Tabelle mit Links zwischen Interessenpunkten und Bildern
+	\item Tabelle mit Links zwischen Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteSourceByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Quellen eines Interessenpunktes oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Quellenangaben
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreSourceByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Quellen eines Interessenpunktes, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Quellenangaben
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteCinemasByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Saalanzahlen eines Interessenpunktes oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreCinemasByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Saalanzahlen eines Interessenpunktes, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteNamesByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Namen eines Interessenpunktes oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreNamesByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Namen eines Interessenpunktes, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoiStoryByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Links eines Interessenpunktes mit Geschichten oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links von Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restorePoiStoryByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Links eines Interessenpunktes mit Geschichten, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links von Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteSeatsByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Sitzplatzanzahlen eines Interessenpunktes oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreSeatsByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Sitzplatzanzahlen eines Interessenpunktes, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteHistAddressByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle historischen Adressen eines Interessenpunktes oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit historischen Adressen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreHistAddressByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle historischen Adressen eines Interessenpunktes, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit historischen Adressen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteOperatorsByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Betreiber eines Interessenpunktes oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreOperatorsByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Betreiber eines Interessenpunktes, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoiPicLinkByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & Legt fest, ob Daten direkt gelöscht werden sollen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht alle Links eines Interessenpunktes mit Bildern oder markiert diese als gelöscht. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links von Interessenpunkten und Bildern
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restorePoiPicLinkByPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt alle Links eines Interessenpunktes mit Bildern, welche als gelöscht markiert wurden, wieder her. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links von Interessenpunkten und Bildern
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{GetDataForSingleMaterial}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$token & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle zum Daten zum Abrufen eines einzelnen Bildes ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{SaveDataForSingleMaterial}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$token       & alphanumerischer Identifikator eines Bildes \\ \hline
+		\$title       & Titel des Bildes \\ \hline
+		\$description & Beschreibung des Bildes \\ \hline
+		\$source      & Quellenangabe (optional) \\ \hline
+		\$sourceType  & Identifikator des Typs der Quelle \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Titel und/oder die Beschreibung eines Bildes in {\glqq COSP\grqq}. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{saveStoryEditedDataToCOSP}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$token & alphanumerischer Identifikator einer Geschichte \\ \hline
+		\$title & Titel der Geschichte \\ \hline
+		\$story & Inhalt der Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den Titel und/oder den Inhalt einer Geschichte in {\glqq COSP\grqq}. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{resetUserPassword}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$username & Nutzername \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fordert ein zurücksetzen des Passwortes in {\glqq COSP\grqq} an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCompleteInformationOfPoiNames}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid      & Identifikator eines Interessenpunktes \\ \hline
+		\$main\_name & Name des Interessenpunktes aus der Interessenpunkt-Tabelle \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Namen eines Interessenpunktes mit Validierungswerten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Namen-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Namen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCompleteInformationOfPoiOperators}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Betreiber eines Interessenpunktes mit Validierungswerten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Betreiber-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Betreibern
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCompleteInformationOfPoiHistAddress}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle historischen Adressen eines Interessenpunktes mit Validierungswerten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit historischen Adressen
+	\item Tabelle mit Validierungsinformationen zu historischen Adressen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteMaterial}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$picToken      & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt die Löschung eines Bildes in {\glqq COSP\grqq} an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getStoriesAsListFromCOSP}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$tokenList      & Array mit alphanumerischen Identifikatoren von Geschichten \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Daten zum Abrufen mehrerer bestimmter Geschichten aus {\glqq COSP\grqq} an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteMaterial}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$data      & alphanumerischer Identifikator einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt die Löschung einer Geschichte in {\glqq COSP\grqq} an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{GetPoiPicLinkValidators}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$lid      & Identifikatoren eines Links zwischen einem Bild und einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Validatoren eines Links zwischen einer Geschichte und einem Bild in {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCompleteInformationOfPoiSeats}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Sitzplatzanzahlen eines Interessenpunktes mit Validierungswerten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+	\item Tabelle mit Validierungswerten zu Sitzplatzanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForPoiSeats}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Sitzplatzanzahlen, welche bereits durch den Nutzer validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Sitzplatzanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoiSeats}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$seatid & Identifikator der Sitzplatzanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einer Sitzplatzanzahl eine Validierung hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Sitzplatzanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCompleteInformationOfPoiCinemas}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Saalanzahlen eines Interessenpunktes mit Validierungswerten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+	\item Tabelle mit Validierungswerten zu Saalanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForPoiCinemas}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Sitzplatzanzahlen, welche bereits durch den Nutzer validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Saalanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validatePoiCinemas}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$cinemasid & Identifikator einer Saalanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einer Sitzplatzanzahl eine Validierung hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zu Saalanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getValidationsByUserForCinemaType}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$uid & Angabe eines Nutzeridentifikators \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion liefert alle Identifikatoren von Interessenpunkten, bei welchen der Typ bereits durch den Nutzer validiert wurden. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zum Typ eines Interessenpunktes
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{validateTypePoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Interessenpunkt eine Validierung für seinen Typ hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Validierungsdaten zum Typ eines Interessenpunktes
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt keinen Rückgabewert.
+\subsubsection{RedirectMainBetaIndex}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion leitet den bereits im Wartungs- beziehungsweise Beta-Modus angemeldeten Nutzern wider auf die Startseite ohne die URL nochmals eingeben zu müssen. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{SendStoryApprovalChange}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$story\_token & alphanumerischer Identifikator einer Geschichte \\ \hline
+		\$state        & Status der Freischaltung der Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion schaltet oder sperrt eine Geschichte in {\glqq COSP\grqq}. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Es gibt keine Antwort.
+\subsubsection{GetCaptchaFromCOSP}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion ruft ein Captcha von {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Konfigurationsdatei
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{sendContactMail}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$mail    & Mailadresse des Senders \\ \hline
+		\$subject & Betreff der Mail \\ \hline
+		\$msg     & Inhalt der Mail \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fordert das senden einer Kontakmail durch {\glqq COSP\grqq} an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Konfigurationsdatei
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAllSourceTypesCOSP}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion ruft alle Quelltypen von COSP ab. Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getUserIp}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion bestimmt die IP-Adresse des Aufrufenden Nutzers. Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

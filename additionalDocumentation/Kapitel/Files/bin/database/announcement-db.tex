@@ -1,0 +1,109 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen für die Ankündigungstabelle-Tabelle.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{addAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$title & Titel der Ankündigung \\ \hline
+		\$content & Inhalt der Ankündigung \\ \hline
+		\$start & Starttag der Ankündigung \\ \hline
+		\$end & Endtag der Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine neue Ankündigung hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAllAnnouncements}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion ruft alle bestehenden Ankündigungen ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator einer Ankündigung\\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion ruft die Daten einer bestimmten Ankündigung ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updateAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id      & Identifikator der Ankündigung \\ \hline
+		\$title   & Titel der Ankündigung \\ \hline
+		\$content & Inhalt der Ankündigung \\ \hline
+		\$start   & Starttag der Ankündigung \\ \hline
+		\$end     & Endtag der Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion ändert eine Ankündigung. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id & Identifikator einer Ankündigung\\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht die Daten einer bestimmten Ankündigung. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCurrentAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion ruft alle aktuellen Ankündigungen ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{updateAktivationStateAnnouncement}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator einer Ankündigung \\ \hline
+		\$state & Aktivierungsstatus einer Ankündigung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt den Aktivierungsstatus einer bestimmten Ankündigung. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Ankündigungstabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

@@ -1,0 +1,78 @@
+\begin{usecase}
+
+\addtitle{Nutzungsstatistik} 
+
+%Primary Actor: Calls on the system to deliver its services.
+\addfield{Benutzer:}{Mitarbeiter, Administratoren}
+\addfield{Endbenutzergruppen:}{}
+
+%Preconditions: What must be true on start and worth telling the reader?
+\addfield{Vorbedingungen:}{Statistiken aufrufen}
+%when multiple
+%\additemizedfield{Preconditions:}{} 
+
+%Main Success Scenario: A typical, unconditional happy path scenario of success.
+\addscenario{Szenario:}{
+	\checkeditem Seite aufrufen
+}
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	
+	\addtitle{Interessenpunktstatistik} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Administratoren}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Statistiken aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Im Dropdown Menu {\glqq Angelegte/Geänderte Interessenpunkte\grqq} auswählen
+	}
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	
+	\addtitle{Kommentarstatistik} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Administratoren}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Statistiken aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Im Dropdown Menu {\glqq Angelegte/Geänderte Kommentare\grqq} auswählen
+	}
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	
+	\addtitle{Nutzungsstatistik erneut aufrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Administratoren}
+	\addfield{Endbenutzergruppen:}{}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Statistiken aufrufen, Kommentarstatistik oder/und Interessenpunktstatistik}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Im Dropdown Menu {\glqq Nutzungsdaten\grqq} auswählen
+	}
+\end{usecase}

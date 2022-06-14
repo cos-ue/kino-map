@@ -1,0 +1,110 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Sitzplatzanzahl-Tabelle benutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{insertSeatsOfPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id   & Identifikator eines Interessenpunktes \\ \hline
+		\$start     & Startjahr \\ \hline
+		\$end       & Endjahr \\ \hline
+		\$seatcount & Sitzplatzanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt eine neue Sitzplatzanzahl einem Interessenpunkt hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{getSeatsByPoiId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Sitzplatzanzahlen eines Interessenpunktes ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getCreatorBySeatsID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$seat\_id & Identifikator der Sitzplatzanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt den Ersteller einer Sitzplatzanzahl ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist eine Zeichenkette.
+\subsubsection{deleteSeats}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$seat\_id & Identifikator der Sitzplatzanzahl \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eine Sitzplatzanzahl. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateSeats}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id        & Identifikator der Sitzplatzanzahl \\ \hline
+		\$seatCount & Sitzplatzanzahl \\ \hline
+		\$start     & Startjahr \\ \hline
+		\$end       & Endjahr \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert eine Sitzplatzanzahl. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionStateSeatsById}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id        & Identifikator der Sitzplatzanzahl \\ \hline
+		\$state & Status der Löschung \\ \hline
+		\$start     & Startjahr \\ \hline
+		\$end       & Endjahr \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert eine Sitzplatzanzahl als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert

@@ -1,0 +1,65 @@
+\subsection{Allgemeines} Diese Datei enthält alle grundlegenden JavaScript-Funktionen für Kartenmarker.
+Die Ausführung des Codes findet im Browser statt. Auch werden hier einige in verschiedenen anderen Javascripts verwendeten Variablen festgelegt.
+\begin{lstlisting}[language=JavaScript]
+var anz = 0;
+var anzEditMap = 0;
+\end{lstlisting}
+\newpage
+\subsection{Funktionen}
+\subsubsection{delMark}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion löscht den gesetzten Marker auf der Karte. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{onMove}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		e       & Marker \\ \hline
+		editMap & Gibt an, ob das JavaScript auf der Interessenpunkt-Ändern-Seite ausgeführt wird \\ \hline
+		Minimap & Gibt an, ob der Marker auf der Minimap ist \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert die Koordinaten in den verdeckten Formularfeldern, wenn der Marker bewegt wird. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{onMoveMM}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		latLng & Array mit Längen- und Breitengrad \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert die Koordinaten in den verdeckten Formularfeldern, wenn die Minimap beim einfügen eines neuen Interessenpunktes aktiv ist. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{placeMarker}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		coordinates & Array mit Längen- und Breitengrad \\ \hline
+		editMap     & Gibt an, ob das JavaScript auf der Interessenpunkt-Ändern-Seite ausgeführt wird \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt den Interessenpunkt-Hinzufügen-Marker an der gegebenen Stelle. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{insertCoordinates}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		editMap     & Gibt an, ob das JavaScript auf der Interessenpunkt-Ändern-Seite ausgeführt wird \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert die verdeckten Formularfelder mit aktualisierten Koordinaten. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{resizeMap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		map         & Variable, welche Karte darstellt \\ \hline
+		coordinates & Array mit Längen- und Breitengrad \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktualisiert den gezeigten Ausschnitt der angegeben Karte mit 300 Milisekunden verzögerung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.

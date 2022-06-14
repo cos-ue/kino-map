@@ -1,0 +1,67 @@
+\label{lang:de}
+\subsection{Allgemeines} Diese Datei enthält ein Array mit Werten um eine Mehrsprachlichkeit in Teilen zu ermöglichen. Speziell beinhaltet diese Datei die Deutsche Version
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Aufbau}
+\subsubsection{Array}
+Das Nachfolgend zu sehende Array beinhaltet alle verwendeten Schlüssel um eine Mehrsprachlichkeit zu ermöglichen. Viele der Texte sind jedoch nicht durch einen Schlüssel hinterlegt.
+\begin{lstlisting}[language=php]
+$lang = array(
+	"Lehrer"=>"Lehrer",
+	"NeuesBenutzerkonto"=>"Neues Benutzerkonto",
+	"Erstellen"=>"Erstellen",
+	"Klassenname"=>"Klassenname",
+	"NeueKlasse"=>"Neue Klasse",
+	"NeuesPasswort"=>"Neues Passwort",
+	"Rolle"=>"Rolle",
+	"Benutzername"=>"Benutzername",
+	"Vorname"=>"Vorname",
+	"Nachname"=>"Nachname",
+	"Löschen"=>"Löschen",
+	"Klassdel"=>"Klasse löschen",
+	"CSV"=>"CSV-Datei hochladen",
+	"Benutzerkontenverwalten"=>"Benutzerkonten verwalten",
+	"Kommentare"=>"Persönlicher Bereich",
+	"Speichern"=>"Speichern",
+	"Spielstätte"=>"Spielstätte",
+	"Koordinaten"=>"Koordinaten",
+	"Auswahl"=>"Wähle ein Bild (*.png oder *.jpeg) aus.",
+	"FotoVideo"=>"Foto oder Video",
+	"Geschichte"=>"Hintergrundinformationen zum Kino",
+	"Besonderheiten"=>"Besonderheiten",
+	"Hist_Adresse"=>"Historische Adresse",
+	"Akt_Adresse"=>"Aktuelle Adresse *",
+	"Längengrad"=>"Längengrad",
+	"Breitengrad"=>"Breitengrad",
+	"Name"=>"Name (Pflichtfeld)",
+	"Poi"=>"Interessenpunkt hinzufügen",
+	"Abmelden"=>"Abmelden",
+	"Suche"=>"Kino-Suche",
+	"Klasse"=>"Klasse wählen",
+	"Sprachen"=>"Sprachen",
+	"Benutzerkonten"=>"Benutzerkonten",
+	"infos" => "Persönlicher Bereich",
+	"lang_en" => "Englisch",
+	"lang_de" => "Deutsch",
+	"Betreiber" => "Betreiber",
+	"betrieb_von" => "Betrieb von",
+	"betrieb_bis" => "Betrieb bis",
+	"Verw" => "Kartenfunktionen",
+	"eintragsverwaltung" => "Eintragsverwaltung"
+);
+\end{lstlisting}
+\subsubsection{Besonderheiten}
+Aktuell werden keine neuen Schlüssel hinzugefügt und die Ermöglichung einer Mehrsprachlichkeit nicht verfolgt.

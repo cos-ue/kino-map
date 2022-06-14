@@ -1,0 +1,221 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen zum Löschen von Daten beziehungsweise um Daten als gelöscht zu markieren.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{deleteSeatsDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$seatID    & Identifikator einer Sitzplatzanzahl \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert eine Sitzalplatzanzahl als gelöscht.
+\begin{itemize}
+	\item Sitzplatzanzahl-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Sitzplatzanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteNamesDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$nameID    & Identifikator eines Namens \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert einen Namen als gelöscht.
+\begin{itemize}
+	\item Namen-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Namen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteCinemasDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$cinemaID  & Identifikator einer Saalanzahl \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert eine Saalanzahl als gelöscht.
+\begin{itemize}
+	\item Saalanzahl-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Saalanzahlen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteOperatorsDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$operatorID & Identifikator eines Betreibers \\ \hline
+		\$overwrite  & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert einen Betreiber als gelöscht.
+\begin{itemize}
+	\item Betreiber-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Betreibern
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteHistAddressDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$histAddressID & Identifikator einer historischen Adresse \\ \hline
+		\$overwrite     & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert eine historische Adresse als gelöscht.
+\begin{itemize}
+	\item Tabelle mit historischen Adressen
+	\item Tabelle mit Validierungsinformationen zu historischen Adressen
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteCommentsDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$commentID & Identifikator eines Kommentars \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert einen Kommentar als gelöscht.
+\begin{itemize}
+	\item Kommentar-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteCommentsByPoiidDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$POIID     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert alle Kommentare eines Interessenpunktes als gelöscht.
+\begin{itemize}
+	\item Kommentar-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoiDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$POIID     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert einen Betreiber als gelöscht.
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Kommentar-Tabelle
+	\item Saalanzahl-Tabelle
+	\item Sitzplatzanzahl-Tabelle
+	\item Namen-Tabelle
+	\item Betreiber-Tabelle
+	\item Tabelle mit historischen Adressen
+	\item Tabelle mit Links zwischen Interessenpunkten und Bildern
+	\item Tabelle mit Links zwischen Interessenpunkten und Geschichten
+	\item Tabelle mit Validierungsinformationen zu Interessenpunkten
+	\item Tabelle mit Validierungsinformationen zu Saalanzahlen
+	\item Tabelle mit Validierungsinformationen zu Sitzplatzanzahlen
+	\item Tabelle mit Validierungsinformationen zu Namen
+	\item Tabelle mit Validierungsinformationen zu historischen Adressen
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Interessenpunkten und Bildern
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoiPicLinkByIDDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$LinkID    & Identifikator eines Links zwischen einem Interessenpunkt und einem Bild \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert einen Link zwischen einem Interessenpunkt und einem Bild als gelöscht.
+\begin{itemize}
+	\item Tabelle mit Links zwischen Interessenpunkten und Bildern
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Interessenpunkten und Bildern
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoiStoryLinkByIDDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$LinkID    & Identifikator eines Links zwischen einem Interessenpunkt und einem Geschichte \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert einen Link zwischen einem Interessenpunkt und einer Geschichte als gelöscht.
+\begin{itemize}
+	\item Tabelle mit Links zwischen Interessenpunkten und Geschichten
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Interessenpunkten und Geschichten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deletePoiMainPicDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$POIID     & Identifikator eines Interessenpunktes \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert das Hauptbild eines Interessenpunktes als gelöscht.
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteSourceDBWrap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$sid       & Identifikator einer Quelle \\ \hline
+		\$overwrite & ermöglicht direktes Löschen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht oder markiert eine Quelle als gelöscht.
+\begin{itemize}
+	\item Interessenpunkt-Tabelle
+	\item Tabelle mit Validierungsinformationen zu Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

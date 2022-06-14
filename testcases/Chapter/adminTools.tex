@@ -1,0 +1,162 @@
+\begin{usecase}
+	\addtitle{Ankündigung hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Ankündigungen Verwalten}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Hinzufügen\grqq}-Button betätigen
+		\checkeditem Titel, Inhalt, Start- und Endzeit ausfüllen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] 
+		\begin{enumerate}
+			\checkeditem Titel, Inhalt, Start und Endzeit ausfüllen
+			\checkeditem {\glqq Vorschau\grqq}-Button betätigen
+		\end{enumerate}
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Vorschau einer Ankündigung} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Ankündigungen Verwalten}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Vorschau\grqq}-Button bei einer Ankündigung betätigen
+		\checkeditem {\glqq Schließen\grqq}-Button betätigen
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Ankündigung bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Ankündigungen Verwalten}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Titel, Inhalt, Start- und Endzeit ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] 
+		\begin{enumerate}
+			\checkeditem Titel, Inhalt, Start und Endzeit ändern
+			\checkeditem {\glqq Vorschau\grqq}-Button betätigen
+		\end{enumerate}
+		\checkeditem[2.b] 
+		\begin{enumerate}
+			\checkeditem Titel ändern
+			\checkeditem {\glqq Vorschau\grqq}-Button betätigen
+		\end{enumerate}
+		\checkeditem[2.c] 
+		\begin{enumerate}
+			\checkeditem Inhalt ändern
+			\checkeditem {\glqq Vorschau\grqq}-Button betätigen
+		\end{enumerate}
+		\checkeditem[2.d] 
+		\begin{enumerate}
+			\checkeditem Startzeit ändern
+			\checkeditem {\glqq Vorschau\grqq}-Button betätigen
+		\end{enumerate}
+		\checkeditem[2.e] 
+		\begin{enumerate}
+			\checkeditem Endzeit ändern
+			\checkeditem {\glqq Vorschau\grqq}-Button betätigen
+		\end{enumerate}
+		\checkeditem[2.f] Titel ändern
+		\checkeditem[2.g] Inhalt ändern
+		\checkeditem[2.h] Startzeit ändern
+		\checkeditem[2.i] Endzeit ändern
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Ankündigung löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Ankündigungen Verwalten}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq Ok\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Ankündigung aktivieren oder deaktivieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Ankündigungen Verwalten}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Aktivieren\grqq}-Button bei nicht aktivierter Ankündigung betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] {\glqq Deaktivieren\grqq}-Button bei aktivierter Ankündigung betätigen
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}

@@ -1,0 +1,33 @@
+\subsection{Allgemeines} Diese Datei dient enthält alle Funktionen, welche für die Geschichten-Seite zusätzlich benötigt werden.
+Die Ausführung des Codes findet im Browser statt. Hier wird eine Variable für die Sortierung der Geschichten gesetzt:
+\begin{lstlisting}[language=JavaScript]
+var sortdown = true;
+\end{lstlisting} 
+Des Weiteren wird auch das initiale Laden der Daten hier ausgelöst:
+\begin{lstlisting}[language=JavaScript]
+window.onload = function () {
+	getAllStories();
+};
+\end{lstlisting} 
+\newpage
+\subsection{Funktionen}
+\subsubsection{updateSortType}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		sortDownState & Wahr, wenn Absteigend sortiert werden soll \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion updated die Variable, welche die Sortierung der Geschichten angibt und löst eine erneute Sortierung aus, bei welcher anschließend auch die Anzeige aktualisiert wird. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{FilterStorys}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion löst eine erneute Sortierung und Filterung der Geschichten aus, bei welcher anschließend auch die Anzeige aktualisiert wird. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{saveLinkedPoi}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion speichert einen Link zwischen einer Geschichte und einem Interessenpunkt. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.

@@ -1,0 +1,1156 @@
+\lstset{
+	language=JavaScript,
+	extendedchars=true,
+	basicstyle= \small\ttfamily,
+	showstringspaces=true,
+	showspaces=false,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	captionpos=b,
+	showlines=true,
+	xleftmargin=4.0ex,
+	extendedchars=true,
+	literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+\subsection{Allgemeines} Diese Datei enthält alle grundlegenden JavaScript-Funktionen.
+Die Ausführung des Codes findet im Browser statt. Auch werden hier einige in verschiedenen anderen Javascripts verwendeten Variablen festgelegt.
+\begin{lstlisting}[language=JavaScript]
+var stories = {};
+var comments = {};
+var storiesMap = {};
+var guest = false;
+var approver = false;
+var admin = false;
+\end{lstlisting}
+Ebenfalls werden mittels dieser Bibliothek die Tooltipps von Elementen aktiviert:
+\begin{lstlisting}[language=JavaScript]
+$(document).ready(function () {
+	$('[data-toggle="tooltip"]').tooltip();
+});
+\end{lstlisting}
+\newpage
+\subsection{Funktionen}
+\subsubsection{sendApiRequest}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		json   & Strukturierte Daten der Anfrage \\ \hline
+		reload & Legt Neuladen der Seite fest \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Sendet Daten an Frontend-API-Endpunkt und gibt Ergebnis zurück. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{sendCOSPRequest}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		url & URI der Anfrage an {\glqq COSP\grqq} \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sendet eine HTTP-Get Anfrage an {\glqq COSP\grqq} und empfängt die übermittelten Daten. Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt oder es werden Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{sendCOSPRequestPost}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		url     & URI der Anfrage an {\glqq COSP\grqq} \\ \hline
+		content & Inhalt der Anfrage an {\glqq COSP\grqq} \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sendet eine HTTP-Post Anfrage an {\glqq COSP\grqq} und empfängt die übermittelten Daten. Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt oder es werden Daten an {\glqq COSP\grqq} gesendet. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{sendApiRequest}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion wählt eine entsprechende Sortierfunktion zum Sortieren der von Benutzern hochgeladenen Geschichten. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{SortStoriesByDateDown}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion sortiert durch Nutzer hochgeladene Geschichten nach Datum absteigend. Die Funktion ist eine Implementierung von Bubble-Sort. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{SortStoriesByDateUp}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion sortiert durch Nutzer hochgeladene Geschichten nach Datum aufsteigend. Die Funktion ist eine Implementierung von Bubble-Sort. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{getAllStories}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt alle durch Nutzer hochgeladenen Geschichten aus {\glqq COSP\grqq} ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{sortAndDisplay}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion weist die Sortierung der Nutzergeschichten an und lässt die Geschichten anschließend anzeigen. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{sendApiRequest}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		Link       & URI zum Abrufen der Daten in {\glqq COSP\grqq} \\ \hline
+		IntCounter & Speicherplatz im {\glqq stories\grqq}-Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion lädt eine einzelne Geschichte aus {\glqq COSP\grqq}. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{loadStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		Story      & Array mit Daten einer Geschichte \\ \hline
+		IntCounter & Speicherstelle im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion speichert die gegebenen Daten der Geschichte an die gegebene Stelle im {\glqq stories\grqq}-Array. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{loadStoryText}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		Story      & Array mit Daten einer Geschichte \\ \hline
+		IntCounter & Speicherstelle im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion zeigt die Geschichte im dafür Entsprechenden <div>-Elements der {\glqq Upload-Story.php\grqq}-Seite an. . Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{finalDeleteStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eine Geschichte mittels API endgültig. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{restoreStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt eine Geschichte mittels API wieder her. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{ApproveStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion gibt eine Geschichte mittels API frei. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{DisapproveStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sperrt eine Geschichte mittels API. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{showMoreStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion bespielt das {\glqq vollständige Geschichte anzeigen\grqq}-Modal mit allen benötigten Daten. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{showLinksLongStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion schließt das {\glqq vollständige Geschichte anzeigen\grqq}-Modal und öffnet die Anzeige von Verknüpfungen zwischen Interessenpunkten und dieser Geschichte. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{checkIfGuest}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion prüft, ob der aktuelle Nutzer ein Gast ist. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{openEditStorie}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion lädt alle benötigten Daten zum bearbeiten einer Geschichte in das entsprechende Modal und zeigt dieses an. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{saveEditStorie}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion speichert eine bearbeitete Geschichte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{showPoiLinks}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion zeigt alle Links zwischen Interessenpunkten und der gegebenen Geschichte an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{FinalDeletePoiStoryLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id         & Identifikator des Links zwischen der Geschichte und dem Interessenpunkt \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einer Geschichte und einem Interessenpunkt mittels API endgültig. Anschließend wird das Modal neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{RestorePoiStoryLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id         & Identifikator des Links zwischen der Geschichte und dem Interessenpunkt \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt einen Link zwischen einer Geschichte und einem Interessenpunkt mittels API wieder her. Anschließend wird das Modal neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{deletePoiStoryLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		IdPoiStory & Identifikator des Links zwischen der Geschichte und dem Interessenpunkt \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einer Geschichte und einem Interessenpunkt mittels API oder markiert den Link als gelöscht. Anschließend wird das Modal neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{ApiRequestDeletePoiStoryLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		IdPoiStory & Identifikator des Links zwischen der Geschichte und dem Interessenpunkt \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sendet eine Löschanfrage für einen Link zwischen einem Interessenpunkt und einer Geschichte an die Frontend-API. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{validatePoiStoryLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		IdPoiStory & Identifikator des Links zwischen der Geschichte und dem Interessenpunkt \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert einen Link zwischen einem Interessenpunkt und einer Geschichte. Die Funktion lädt anschließend das entsprechende Modal neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{ApiRequestValidatePoiStoryLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		IdPoiStory & Identifikator des Links zwischen der Geschichte und dem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion sendet eine Validierungsanfrage an die Frontend-API um einen Link zwischen einer Geschichte und einem Interessenpunkt zu validieren. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{getPoiTitle}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		token  & alphanumerischer Identifikator einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Titel der nicht mit der angegebenen Geschichten verlinkten Interessenpunkte ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{loadKnownStoriesPoiLinks}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		token  & alphanumerischer Identifikator einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Verknüpfungen zwischen der angegebenen Geschichte und Interessenpunkten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{addStory}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt das Anlegen einer neuen Geschichte bei der Frontend-API an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{validateStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert eine Geschichte und lädt anschließend die Seite neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{deleteStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		intCounter & Speicherstelle der Geschichte im Array \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt das löschen einer Geschichte an oder fragt die Markierung einer Geschichte als gelöscht an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{validatePicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		url & URI zum validieren eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert ein Bild und lädt anschließend die Seite neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{deletePOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt das löschen eines Interessenpunktes an oder fragt die Markierung eines Interessenpunktes als gelöscht an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deleteComment}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		commentid    & Identifikator eines Kommentars \\ \hline
+		personalArea & Gibt an, ob Funktion aus persönlichem Bereich ausgeführt wird \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt das löschen eines Kommentars an oder fragt die Markierung eines Kommentars als gelöscht an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deleteCommentMap}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		commentid & Identifikator eines Kommentars \\ \hline
+		poi\_id   & Identifikator des zugehörigen Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eines Kommentars und wird von {\glqq Mehr Anzeigen\grqq}-Modal aus aufgerufen. Nach löschen lädt es den Kommentarteil des {\glqq Mehr Anzeigen\grqq}-Modal neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{getCommentByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		commentid & Identifikator eines Kommentars \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt die Daten eines bestimmten Kommentars an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{saveCommentByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		commentid      & Identifikator eines Kommentars \\ \hline
+		commentContent & Inhalt des Kommentars \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion speichert einen geänderten Kommentar. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{AddCommentAPI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		comment & Inhalt des Kommentars \\ \hline
+		poiid   & Zugehöriger Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Interessenpunkt einen neuen Kommentar hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{LoadSingleMaterialData}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		token & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fordert alle zum Abrufen eines einzelnen Bildes benötigten Daten mittels Frontend-API aus {\glqq COSP\grqq} an. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{sendEditedMaterialData}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		title       & Titel des Bildes \\ \hline
+		description & Beschreibung des Bildes \\ \hline
+		token       & alphanumerischer Identifikator des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion speichert veränderte Metadaten eines Bildes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{sendEditedMaterialDataSource}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		title       & Titel des Bildes \\ \hline
+		description & Beschreibung des Bildes \\ \hline
+		token       & alphanumerischer Identifikator des Bildes \\ \hline
+		source      & Quellenangabe \\ \hline
+		sourcetype  & Identifikator des Typs der Quelle \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion speichert veränderte Metadaten eines Bildes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+
+\subsubsection{AddNameOfPoiAPI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		from  & Startjahr \\ \hline
+		till  & Endjahr \\ \hline
+		name  & Name \\ \hline
+		poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Interessenpunkt einen neuen Namen hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePoiNameFromList}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		ID    & Identifikator eines Namens \\ \hline
+		POiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Namen oder markiert diesen als gelöscht und lädt anschließend die Namensliste erneut. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePoiOperatorFromList}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		ID    & Identifikator eines Betreibers \\ \hline
+		POiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Betreiber oder markiert diesen als gelöscht und lädt anschließend die Liste der Betreiber erneut. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePoiAddressFromList}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		ID    & Identifikator einer historischen Adresse \\ \hline
+		POiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eine historische Adresse oder markiert diese als gelöscht und lädt anschließend die Liste der historischen Adressen erneut. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validateTimeSpanPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		POi\_id & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert die Zeitspanne eines Interessenpunktes und lädt anschließend das entsprechende Modal neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validateCurrentAddressPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		POi\_id & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert die aktuelle Adresse eines Interessenpunktes und lädt anschließend das entsprechende Modal neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validateHistoryPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		POi\_id & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert die Geschichte eines Interessenpunktes und lädt anschließend das entsprechende Modal neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validateTypePOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		POi\_id & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert den Typ eines Interessenpunktes und lädt anschließend das entsprechende Modal neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.\\
+\subsubsection{validatePoiName}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name\_id & Identifikator eines Namen \\ \hline
+		POi\_id  & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert einen Namen und lädt anschließend die Namensliste neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validatePoiOperator}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		operator\_id & Identifikator eines Namen \\ \hline
+		POi\_id      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert einen Betreiber und lädt anschließend die Liste der Betreiber neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validatePoiAddress}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		Address\_id & Identifikator einer historischen Adresse \\ \hline
+		POi\_id     & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert eine historische Adresse und lädt anschließend die Liste der historischen Adressen neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{showLongComment}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		commentID & Identifikator eines Kommentars \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion zeigt einen langen Kommentar im entsprechenden Modal an. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{closeLongComment}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion schließt das Modal eines langen Kommentars und öffnet das {\glqq Mehr-Anzeigen\grqq}-Modal des zum Kommentar zugehörigen Interessenpunktes. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePoiStoryLinkOnPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		IdPoiStory & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte\\ \hline
+		PoiId      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Interessenpunkt und einer Geschichte oder markiert diesen als gelöscht und lädt die entsprechende Anzeige im Anschluss neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validatePoiStoryLinkOnPoi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		IdPoiStory & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte\\ \hline
+		PoiId      & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert einen Link zwischen einem Interessenpunkt und einer Geschichte. Anschließend lädt die Funktion die entsprechende Anzeige neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{checkAddressExists}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		Streetname  & Straßenname einer Adresse \\ \hline
+		Housenumber & Hausnummer einer Adresse \\ \hline
+		City        & Ortsname einer Adresse \\ \hline
+		Postalcode  & Postleitzahl einer Adresse \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft ob eine Adresse bereits benutzt wird. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort ist ein Boolean.
+\subsubsection{getPicturesAsList}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt eine Liste aller Bilder des Moduls ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{showSinglePicSelect}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion lädt das Bildauswahl-modal. Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{onclick\_picture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		e & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt den alphanumerischen Identifikator des/der ausgewählten Bildes/Bilder zur späteren Speicherung zur Verfügung. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{setPictureSelect\_SingleSelect}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion setzt den Modus des Bildauswahl-Modals in Einzelauswahl. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{setPictureSelect\_MultiSelect}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion setzt den Modus des Bildauswahl-Modals in Mehrfachauswahl. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{verifyPicPoiLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert einen Link zwischen einem Interessenpunkt und einem Bild. Anschließend wird die Anzeige neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePicPoiLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id    & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		poiid & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Interessenpunkt und einem Bild oder markiert diesen als gelöscht. Anschließend wird die Anzeige neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{showPoiPicLinks}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		picToken & alphanumerischer Identifikator eines Bildes \\ \hline
+		title    & Titel des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion öffnet das Modal zur Anzeige der Verknüpften Interessenpunkte eines Bildes. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{ListMaterialWrapperFinalDeletePictureLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id       & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		pictoken & alphanumerischer Identifikator eines Bildes \\ \hline
+		title    & Titel des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Bild und einem Interessenpunkt endgültig. Anschließend wird die entsprechende Anzeige neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{ListMaterialWrapperRestorePictureLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id       & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		pictoken & alphanumerischer Identifikator eines Bildes \\ \hline
+		title    & Titel des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt einen Link zwischen einem Bild und einem Interessenpunkt wieder her. Anschließend wird die entsprechende Anzeige neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{getPoisForPicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		pictoken & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle mit einem Bild verknüpften Interessenpunkte ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePicPoiListMaterialLink}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id       & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		pictoken & alphanumerischer Identifikator eines Bildes \\ \hline
+		title    & Titel des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Bild und einem Interessenpunkt oder markiert diesen als gelöscht. Anschließend wird die entsprechende Anzeige neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{verifyPicPoiLinkMaterial}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id       & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+		pictoken & alphanumerischer Identifikator eines Bildes \\ \hline
+		title    & Titel des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert einen Link zwischen einem Bild und einem Interessenpunkt. Anschließend wird die entsprechende Anzeige neu geladen. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{addPicPoiLinkMaterialList}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		pictoken & alphanumerischer Identifikator eines Bildes \\ \hline
+		title    & Titel des Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einem Bild einen neuen Link zu einem Interessenpunkt hinzu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validatePoiSeats}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		seat\_id & Identifikator einer Sitzplatzanzahl \\ \hline
+		POi\_id  & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert eine Sitzplatzanzahl und lädt die Anzeige anschließend neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePoiSeatsFromList}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		ID     & Identifikator einer Sitzplatzanzahl \\ \hline
+		POiid  & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eine Sitzplatzanzahl oder markiert diese als gelöscht und lädt die Anzeige anschließend neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{validatePoiCinemas}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		seat\_id & Identifikator einer Saalanzahl \\ \hline
+		POi\_id  & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion validiert eine Saalanzahl und lädt die Anzeige anschließend neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deletePoiCinemasFromList}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		ID     & Identifikator einer Saalanzahl \\ \hline
+		POiid  & Identifikator eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht eine Saalanzahl oder markiert diese als gelöscht und lädt die Anzeige anschließend neu. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{loadCaptchaContact}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion lädt ein Captcha. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{submitContact}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion fragt das senden einer Kontak-E-Mail an. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion ein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{setErrorOnInputContact}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		elementid & Identifikator des HTML-Elementes\\ \hline
+		state & Status der gesetzt werden soll\\ \hline
+		tootip & Tooltipp der angezeigt werden soll\\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt die Darstellung eines Fehler-Status.
+\subsubsection{finalDeleteLinkPoiPic}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Interessenpunkt und einem Bild endgültig. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{finalDeleteLinkPoiPic}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id & Identifikator eines Links zwischen einem Bild und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt einen Link zwischen einem Interessenpunkt und einem Bild wieder her. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{finalDeleteLinkPoiStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id & Identifikator eines Links zwischen einer Geschichte und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einem Interessenpunkt und einer Geschichte endgültig. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{RestoreLinkPoiStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		id & Identifikator eines Links zwischen einer Geschichte und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt einen Link zwischen einem Interessenpunkt und einer Geschichte wieder her. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{finalDeletePicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		token & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht ein Bild endgültig. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+\subsubsection{restorePicture}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		token & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt ein Bild wieder her. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+	\item COSP
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es werden jedoch Daten an {\glqq COSP\grqq} gesendet.
+
+\subsubsection{getCookie}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name & Name des Cookies \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion lädt den Wert des Cookies mit dem angegebenen Namen. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{testCookie}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name & Name des Cookies \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft, ob ein Cookie mit dem angegebenen Namen existiert. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{setCookie}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name & Name des Cookies \\ \hline
+		value & Inhalt des Cookies \\ \hline
+		exdays & Tage bis Ablauf des Cookies \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt einen Cookie mit dem angegebenen Wert und Namen, welcher nach den angegebenen Tagen abläuft. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{deleteCookie}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name & Name des Cookies \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht den Cookie mit dem angegebenen Namen. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{CheckAddress}
+\paragraph{Parameter} Die Funktion besitzt keine Parameter.
+\paragraph{Beschreibung} Die Funktion prüft ob eine eingegebene Adresse bereits existiert. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.

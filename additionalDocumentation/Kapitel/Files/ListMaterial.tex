@@ -1,0 +1,10 @@
+\subsection{Allgemeines} Diese Datei zeigt eine Liste aller hochgeladenen Bilder an.
+Die Datei ist direkt durch den Nutzer aufrufbar. Sie setzt auch die entsprechende Konstante und bindet alle notwendigen Dateien ein:
+\begin{lstlisting}[language=php]
+	define('NICE_PROJECT', true);
+	require_once "bin/inc.php";
+\end{lstlisting}
+\subsection{Allgemeines}
+Auf dieser Seite besteht die Option ein Bild zu validieren, zu löschen oder zu die Metadaten zu bearbeiten. Des Weiteren ist es möglich ein Bild mit einem oder mehreren Interessenpunkten zu verknüpfen. Die Seite besteht aus einer Tabelle aller Bilder in nicht sortierter Reihenfolge. Es werden tabellarisch zu jedem Eintrag ein Vorschaubild, der Titel, die Beschreibung und der hochladende Nutzer angezeigt.
+\subsection{Besonderheiten}
+Die Seite ist auch als Gast verfügbar, jedoch nur im angemeldeten Zustand sichtbar.

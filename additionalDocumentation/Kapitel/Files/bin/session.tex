@@ -1,0 +1,23 @@
+\subsection{Allgemeines} Diese Datei startet die PHP-Session.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Allgemeines}
+Der Sessionstart erfolgt mittels nachfolgendem Code:
+\begin{lstlisting}[language=php]
+session_start();
+\end{lstlisting}
+\subsection{Besonderheiten}
+Hier ist es in Zukunft geplant die Sessiondaten in eine Datenbank zu schreiben.

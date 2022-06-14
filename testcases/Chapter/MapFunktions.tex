@@ -1,0 +1,1717 @@
+\begin{usecase}
+	\addtitle{Interessenpunkt Anlegen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Auf der Karte Punkt mit klick markieren
+		\checkeditem {\glqq Eintrag hinzufügen\grqq}-Button betätigen
+		\checkeditem {\glqq Weiter\grqq}-Button betätigen
+		\checkeditem Alle Textfelder ausfüllen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+		\checkeditem {\glqq Schließen\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Ort auf Karte mittels Suchfunktion suchen
+		\checkeditem[4.a] Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, Adressenfelder inkomplett und {\glqq Hintergrundinformationen\grqq} ausfüllen
+		\checkeditem[4.b] Eines der Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Hintergrundinformationen\grqq} weglassen, den Rest und alle Adressenfelder ausfüllen
+		\checkeditem[4.c] Eines der Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Hintergrundinformationen\grqq} weglassen, den Rest und nicht alle Adressenfelder ausfüllen
+		\checkeditem[4.d] Zwei der Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Hintergrundinformationen\grqq} weglassen, den Rest und alle Adressenfelder ausfüllen
+	}
+	\newpage
+	\addscenario{Erweiterung:}{
+		\checkeditem[4.e] Zwei der Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Hintergrundinformationen\grqq} weglassen, den Rest und nicht alle Adressenfelder ausfüllen
+		\checkeditem[4.f] Drei der Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Hintergrundinformationen\grqq} weglassen, den Rest und alle Adressenfelderausfüllen
+		\checkeditem[4.g] Drei der Textfelder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Hintergrundinformationen\grqq} weglassen, den Rest und nicht alle Adressenfelderausfüllen
+		\checkeditem[4.h] nicht alle Adressenfelder und Name ausfüllen
+		\checkeditem[4.i] Marker auf Minimap verschieben für Fälle 3.a -3.h und 3
+		\checkeditem[4.j] Informationsfeld ({\glqq I\grqq}-Button) zum Geschichte-Feld aufrufen und auf {\glqq dort\grqq} klicken
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktvorschau} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{nicht Authentifiziert, Authentifiziert, Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Auf Interessenpunkt klicken
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Vollständige Interessenpunktinformationen abrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{nicht Authentifiziert, Authentifiziert, Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Auf Interessenpunkt klicken
+		\checkeditem {\glqq Mehr Anzeigen\grqq}-Button betätigen
+	}
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte mit Eintrag verknüpfen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Einen Interessenpunkt aus dem DropDown-Menu auswählen und {\glqq Speicher\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte-Eintrag-Verknüpfung validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen, Geschichte mit Eintrag verknüpfen oder/und Geschichte mit Eintrag verknüpfen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Validieren\grqq}-Button hinter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte-Eintrag-Verknüpfung Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen, Geschichte mit Eintrag verknüpfen oder/und Geschichte mit Eintrag verknüpfen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Löschen\grqq}-Button hinter unvalidierter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Name hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Name-Feld ausfüllen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Mit Beginn
+			\begin{enumerate}
+				\checkeditem Von-Feld ausfüllen
+				\checkeditem Name-Feld ausfüllen
+			\end{enumerate}
+		\checkeditem[1.b] Mit Ende
+			\begin{enumerate}
+				\checkeditem Ende-Feld ausfüllen
+				\checkeditem Name-Feld ausfüllen
+			\end{enumerate}
+		\checkeditem[1.c] Mit Beginn und Ende
+			\begin{enumerate}
+				\checkeditem Beginn-Feld ausfüllen
+				\checkeditem Ende-Feld ausfüllen
+				\checkeditem Name-Feld ausfüllen
+			\end{enumerate}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Betreiber hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Betreiber-Feld ausfüllen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Mit Beginn
+		\begin{enumerate}
+			\checkeditem Von-Feld ausfüllen
+			\checkeditem Betreiber-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.b] Mit Ende
+		\begin{enumerate}
+			\checkeditem Ende-Feld ausfüllen
+			\checkeditem Betreiber-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.c] Mit Beginn und Ende
+		\begin{enumerate}
+			\checkeditem Beginn-Feld ausfüllen
+			\checkeditem Ende-Feld ausfüllen
+			\checkeditem Betreiber-Feld ausfüllen
+		\end{enumerate}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen historische Adresse hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Adresse eintragen\grqq}-Button betätigen
+		\checkeditem Straßenname, Hausnummer, Stadt und Postleitzahl eintragen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.aa] Straßenname eintragen
+		\checkeditem[1.ab] Hausnummer eintragen
+		\checkeditem[1.ac] Stadt eintragen
+		\checkeditem[1.ad] Postleitzahl eintragen
+		\checkeditem[1.ae] Straßenname und Hausnummer eintragen
+		\checkeditem[1.af] Hausnummer und Stadt eintragen
+		\checkeditem[1.ag] Stadt und Postleitzahl eintragen
+		\checkeditem[1.ah] Straßenname und Postleitzahl eintragen
+		\checkeditem[1.ai] Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.aj] Straßenname und Stadt eintragen
+		\checkeditem[1.ak] Hausnummer, Stadt und Postleitzahl eintragen
+		\checkeditem[1.al] Straßenname, Stadt und Postleitzahl eintragen
+	}
+	\newpage
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.am] Straßenname, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.an] Straßenname, Hausnummer und Stadt eintragen		
+		\checkeditem[1.at] Von, Straßenname und Hausnummer eintragen
+		\checkeditem[1.au] Von, Hausnummer und Stadt eintragen
+		\checkeditem[1.av] Von, Stadt und Postleitzahl eintragen
+		\checkeditem[1.aw] Von, Straßenname und Postleitzahl eintragen
+		\checkeditem[1.ax] Von, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.ay] Von, Straßenname und Stadt eintragen
+		\checkeditem[1.az] Von, Hausnummer, Stadt und Postleitzahl eintragen
+		\checkeditem[1.ba] Von, Straßenname, Stadt und Postleitzahl eintragen
+		\checkeditem[1.bc] Von, Straßenname, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.bd] Von, Straßenname, Hausnummer und Stadt eintragen
+
+		\checkeditem[1.be] Bis, Straßenname, Hausnummer, Stadt und Postleitzahl eintragen
+		\checkeditem[1.bf] Bis, Straßenname eintragen
+		\checkeditem[1.bg] Bis, Hausnummer eintragen
+		\checkeditem[1.bh] Bis, Stadt eintragen
+		\checkeditem[1.bi] Bis, Postleitzahl eintragen
+		\checkeditem[1.bj] Bis, Straßenname und Hausnummer eintragen
+		\checkeditem[1.bk] Bis, Hausnummer und Stadt eintragen
+		\checkeditem[1.bl] Bis, Stadt und Postleitzahl eintragen
+		\checkeditem[1.bm] Bis, Straßenname und Postleitzahl eintragen
+		\checkeditem[1.bn] Bis, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.bo] Bis, Straßenname und Stadt eintragen
+		\checkeditem[1.bp] Bis, Hausnummer, Stadt und Postleitzahl eintragen
+			}
+	\newpage
+\addscenario{Erweiterung:}{
+		\checkeditem[1.bq] Bis, Straßenname, Stadt und Postleitzahl eintragen
+		\checkeditem[1.br] Bis, Straßenname, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.bs] Bis, Straßenname, Hausnummer und Stadt eintragen
+		\checkeditem[1.bt] Von, Bis, Straßenname, Hausnummer, Stadt und Postleitzahl eintragen
+		\checkeditem[1.bu] Von, Bis, Straßenname eintragen
+		\checkeditem[1.bv] Von, Bis, Hausnummer eintragen
+		\checkeditem[1.bw] Von, Bis, Stadt eintragen
+		\checkeditem[1.bx] Von, Bis, Postleitzahl eintragen
+		\checkeditem[1.by] Von, Bis, Straßenname und Hausnummer eintragen
+		\checkeditem[1.bz] Von, Bis, Hausnummer und Stadt eintragen
+		\checkeditem[1.ca] Von, Bis, Stadt und Postleitzahl eintragen
+		\checkeditem[1.cb] Von, Bis, Straßenname und Postleitzahl eintragen
+		\checkeditem[1.cc] Von, Bis, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.cd] Von, Bis, Straßenname und Stadt eintragen
+		\checkeditem[1.ce] Von, Bis, Hausnummer, Stadt und Postleitzahl eintragen
+		\checkeditem[1.cf] Von, Bis, Straßenname, Stadt und Postleitzahl eintragen
+		\checkeditem[1.cg] Von, Bis, Straßenname, Hausnummer und Postleitzahl eintragen
+		\checkeditem[1.ch] Von, Bis, Straßenname, Hausnummer und Stadt eintragen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Sitzplatzzahl hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Anzahl der Sitzplätze\grqq}-Feld ausfüllen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Mit Beginn
+		\begin{enumerate}
+			\checkeditem Von-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Sitzplätze\grqq}-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.b] Mit Ende
+		\begin{enumerate}
+			\checkeditem Ende-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Sitzplätze\grqq}-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.c] Mit Beginn und Ende
+		\begin{enumerate}
+			\checkeditem Beginn-Feld ausfüllen
+			\checkeditem Ende-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Sitzplätze\grqq}-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.d] Ohne Anzahl der Sitzplätze
+		\begin{enumerate}
+			\checkeditem Beginn-Feld und/oder Ende-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Sitzplätze\grqq}-Feld nicht ausfüllen
+		\end{enumerate}
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Kinosaal-Anzahl hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Anzahl der Kinosäle\grqq}-Feld ausfüllen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Mit Beginn
+		\begin{enumerate}
+			\checkeditem Von-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Kinosäle\grqq}-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.b] Mit Ende
+		\begin{enumerate}
+			\checkeditem Ende-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Kinosäle\grqq}-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.c] Mit Beginn und Ende
+		\begin{enumerate}
+			\checkeditem Beginn-Feld ausfüllen
+			\checkeditem Ende-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Kinosäle\grqq}-Feld ausfüllen
+		\end{enumerate}
+		\checkeditem[1.d] Ohne Anzahl der Kinosäle
+		\begin{enumerate}
+			\checkeditem Beginn-Feld und/oder Ende-Feld ausfüllen
+			\checkeditem {\glqq Anzahl der Kinosäle\grqq}-Feld nicht ausfüllen
+		\end{enumerate}
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Bildverknüpfung hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen, Bild Hinzufügen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Bilder hinzufügen\grqq}-Button betätigen
+		\checkeditem entsprechende Bilder auswählen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[3.a] {\glqq Abbrechen\grqq}-Button betätigen
+		\checkeditem[3.b] {\glqq Schließen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Name ändern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Namenseintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Name-Feld ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Mit Beginn
+		\begin{enumerate}
+			\checkeditem Von-Feld ändern
+			\checkeditem Name-Feld ändern
+		\end{enumerate}
+		\checkeditem[2.b] Mit Ende
+		\begin{enumerate}
+			\checkeditem Ende-Feld ändern
+			\checkeditem Name-Feld ändern
+		\end{enumerate}
+		\checkeditem[2.c] Mit Beginn und Ende
+		\begin{enumerate}
+			\checkeditem Beginn-Feld ändern
+			\checkeditem Ende-Feld ändern
+			\checkeditem Name-Feld ändern
+		\end{enumerate}
+		\checkeditem[2.d] Beginn-Feld ändern
+		\checkeditem[2.e] Ende-Feld ändern
+		\checkeditem[2.f] Beginn und Ende
+		\begin{enumerate}
+			\checkeditem Beginn-Feld ändern
+			\checkeditem Ende-Feld ändern
+		\end{enumerate}
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Betreiber ändern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollst. Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Betreiber-Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Betreiber-Feld ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Beginn-Feld ändern
+		\checkeditem[2.b] Ende-Feld ändern
+		\checkeditem[2.c] Beginn und Ende ändern
+		\checkeditem[2.d] Beginn-Feld und Betreiber ändern
+		\checkeditem[2.e] Ende-Feld und Betreiber ändern
+		\checkeditem[2.f] Beginn und Ende und Betreiber ändern
+		
+	}
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen historische Adresse ändern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Adresse eintragen\grqq}-Button betätigen
+		\checkeditem Straßenname, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.aa] Straßenname ändern
+		\checkeditem[1.ab] Hausnummer ändern
+		\checkeditem[1.ac] Stadt ändern
+		\checkeditem[1.ad] Postleitzahl ändern
+		\checkeditem[1.ae] Straßenname und Hausnummer ändern
+		\checkeditem[1.af] Hausnummer und Stadt ändern
+		\checkeditem[1.ag] Stadt und Postleitzahl ändern
+		\checkeditem[1.ah] Straßenname und Postleitzahl ändern
+		\checkeditem[1.ai] Hausnummer und Postleitzahl ändern
+		\checkeditem[1.aj] Straßenname und Stadt ändern
+		\checkeditem[1.ak] Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.al] Straßenname, Stadt und Postleitzahl ändern
+		\checkeditem[1.am] Straßenname, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.an] Straßenname, Hausnummer und Stadt ändern
+						}
+	\newpage
+\addscenario{Erweiterung:}{
+		\checkeditem[1.ao] Von, Straßenname, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.ap] Von, Straßenname ändern
+		\checkeditem[1.aq] Von, Hausnummer ändern
+		\checkeditem[1.ar] Von, Stadt ändern
+		\checkeditem[1.as] Von, Postleitzahl ändern
+		\checkeditem[1.at] Von, Straßenname und Hausnummer ändern
+		\checkeditem[1.au] Von, Hausnummer und Stadt ändern
+		\checkeditem[1.av] Von, Stadt und Postleitzahl ändern
+		\checkeditem[1.aw] Von, Straßenname und Postleitzahl ändern
+		\checkeditem[1.ax] Von, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.ay] Von, Straßenname und Stadt ändern
+		\checkeditem[1.az] Von, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.ba] Von, Straßenname, Stadt und Postleitzahl ändern
+		\checkeditem[1.bc] Von, Straßenname, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.bd] Von, Straßenname, Hausnummer und Stadt ändern
+		\checkeditem[1.be] Bis, Straßenname, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.bf] Bis, Straßenname ändern
+		\checkeditem[1.bg] Bis, Hausnummer ändern
+		\checkeditem[1.bh] Bis, Stadt ändern
+		\checkeditem[1.bi] Bis, Postleitzahl ändern
+		\checkeditem[1.bj] Bis, Straßenname und Hausnummer ändern
+		\checkeditem[1.bk] Bis, Hausnummer und Stadt ändern
+		\checkeditem[1.bl] Bis, Stadt und Postleitzahl ändern
+		\checkeditem[1.bm] Bis, Straßenname und Postleitzahl ändern
+					}
+	\newpage
+\addscenario{Erweiterung:}{
+		\checkeditem[1.bn] Bis, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.bo] Bis, Straßenname und Stadt ändern
+		\checkeditem[1.bp] Bis, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.bq] Bis, Straßenname, Stadt und Postleitzahl ändern
+		\checkeditem[1.br] Bis, Straßenname, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.bs] Bis, Straßenname, Hausnummer und Stadt ändern
+		\checkeditem[1.bt] Von, Bis, Straßenname, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.bu] Von, Bis, Straßenname ändern
+		\checkeditem[1.bv] Von, Bis, Hausnummer ändern
+		\checkeditem[1.bw] Von, Bis, Stadt ändern
+		\checkeditem[1.bx] Von, Bis, Postleitzahl ändern
+		\checkeditem[1.by] Von, Bis, Straßenname und Hausnummer ändern
+		\checkeditem[1.bz] Von, Bis, Hausnummer und Stadt ändern
+		\checkeditem[1.ca] Von, Bis, Stadt und Postleitzahl ändern
+		\checkeditem[1.cb] Von, Bis, Straßenname und Postleitzahl ändern
+		\checkeditem[1.cc] Von, Bis, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.cd] Von, Bis, Straßenname und Stadt ändern
+		\checkeditem[1.ce] Von, Bis, Hausnummer, Stadt und Postleitzahl ändern
+		\checkeditem[1.cf] Von, Bis, Straßenname, Stadt und Postleitzahl ändern
+		\checkeditem[1.cg] Von, Bis, Straßenname, Hausnummer und Postleitzahl ändern
+		\checkeditem[1.ch] Von, Bis, Straßenname, Hausnummer und Stadt ändern
+		\checkeditem[1.ci] Von ändern
+		\checkeditem[1.cj] Bis ändern
+		\checkeditem[1.ck] Von und Bis ändern
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Sitzplatzzahl ändern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollst. Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei {\glqq Anzahl der Sitzplätze\grqq}-Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem {\glqq Anzahl der Sitzplätze\grqq}-Feld ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Beginn-Feld ändern
+		\checkeditem[2.b] Ende-Feld ändern
+		\checkeditem[2.c] Sitzplatzzahl ändern
+		\checkeditem[2.d] Beginn und Ende ändern
+		\checkeditem[2.e] Beginn-Feld und Anzahl der Sitzplätze ändern
+		\checkeditem[2.f] Ende-Feld und Anzahl der Sitzplätze ändern
+		\checkeditem[2.g] Beginn und Ende und Anzahl der Sitzplätze ändern
+		
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Kinosaal-Anzahl ändern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollst. Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei {\glqq Anzahl der Kinosäle\grqq}-Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem {\glqq Anzahl der Kinosäle\grqq}-Feld ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Beginn-Feld ändern
+		\checkeditem[2.b] Ende-Feld ändern
+		\checkeditem[2.c] Kinosaalanzahl ändern
+		\checkeditem[2.d] Beginn und Ende ändern
+		\checkeditem[2.e] Beginn-Feld und Anzahl der Kinosäle ändern
+		\checkeditem[2.f] Ende-Feld und Anzahl der Kinosäle ändern
+		\checkeditem[2.g] Beginn und Ende und Anzahl der Kinosäle ändern
+		
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Name Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Namenseintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Namenseintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Betreiber Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Betreiber-Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Betreiber-Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen historische Addresse Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem histrorischer Addressen-Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem histrorischer Addressen-Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Anzahl der Sitzplätze Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Sitzplatzanzahleintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Sitzplatzanzahleintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Anzahl der Kinosäle Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Kinosaalanzahleintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Kinosaalanzahleintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Verknüpfung mit Bild Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidierter Verknüpfung {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Verknüpfung {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Name Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Namenseintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Namenseintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Betreiber Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Betreiber-Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Betreiber-Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen historische Addresse Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem histrorischer Addressen-Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem histrorischer Addressen-Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Sitzplatzzahl Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Sitzplatzanzahleintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Sitzplatzanzahleintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Anzahl der Kinosäle Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Kinosaalanzahleintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Kinosaalanzahleintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunktinformationen Verknüpfung mit Bild Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidierter Verknüpfung {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Verknüpfung {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Zeitraum Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Zeitraum {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Zeitraum {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Aktuelle Adresse Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidierter aktueller Adresse {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validierter aktueller Adresse {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Historie Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidierter Historie {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validierter Historie {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Kommentar schreiben} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Kommentartextfeld mit Inhalt (< 400 Zeichen) füllen
+		\checkeditem {\glqq absenden\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Kommentartextfeld mit Inhalt (>= 600 Zeichen) füllen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Kommentar vollständig Anzeigen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Neben geeignetem Kommentar {\glqq Vollständig anzeigen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Kommentar Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Neben einem Kommentar {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+
+
+\newpage
+\begin{usecase}
+	\addtitle{Interessenpunkt suchen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Teil eines Eintragsnamen in {\glqq Such\grqq}-Feld eingeben
+		\checkeditem {\glqq Suche\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] kein Teil eines Eintragsnamen in {\glqq Such\grqq}-Feld eingeben
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Karte vergrößern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Zoom in\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Mausrad nach oben scrollen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Karte verkleinern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Zoom out\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Mausrad nach unten scrollen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Eintragsverwaltung öffnen alternativ Vollständige Interessenpunkt Informationen anzeigen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei einem unvalidiertem Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei einem validiertem Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Eintragsverwaltung öffnen alternativ Vollständige Interessenpunkt Informationen anzeigen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt Bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Eintragsverwaltung öffnen alternativ Vollständige Interessenpunkt Informationen anzeigen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Eine Auswahl der Felder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Geschichte\grqq}, das Bild oder eines/alle Adressfelder ändern
+		\checkeditem {\glqq Ändern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt Hauptbild Bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Eintragsverwaltung öffnen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem {\glqq Bild Ändern\grqq}-Button betätigen
+		\checkeditem Bild hochladen
+			\begin{enumerate}
+			\checkeditem {\glqq Bildauswahl\grqq}-Button betätigen
+			\checkeditem Bild anklicken
+			\checkeditem {\glqq Speichern\grqq}-Button betätigen
+			\end{enumerate}
+		\checkeditem {\glqq Ändern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem[3.a] Bild hochladen
+		\begin{enumerate}
+			\checkeditem {\glqq Bildauswahl\grqq}-Button betätigen
+			\checkeditem Bild anklicken
+			\checkeditem {\glqq Abbrechen\grqq}-Button betätigen
+		\end{enumerate}
+		\checkeditem[3.b] Bild hochladen
+		\begin{enumerate}
+			\checkeditem {\glqq Neues Bild auswählen\grqq}-Button betätigen
+			\checkeditem Titel Eintragen
+			\checkeditem Bildauswählen
+			\checkeditem {\glqq Hochladen\grqq}-Button betätigen
+		\end{enumerate}
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt über Karte Bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Eine Auswahl der Felder {\glqq Name\grqq}, {\glqq Betrieb von\grqq}, {\glqq Betrieb bis\grqq}, {\glqq Geschichte\grqq}, das Bild oder eines/alle Adressfelder ändern
+		\checkeditem {\glqq Ändern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Bearbeiten\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt über Karte Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Intressenpunkt über Karte Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Eintrag {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+
+\newpage
+\begin{usecase}
+	\addtitle{Quellenangabe zu Interessenpunkt hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Quellen-Typ auswählen
+		\checkeditem {\glqq Quellen-Angabe\grqq}-Eingabefeld Ausfüllen
+		\checkeditem Bezug der Quelle auswählen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Quellenangabe bei Interessenpunkt bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Typ der Quelle, Quellen-Angabe und Bezug ändern
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}	
+	
+		%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Typ der Quelle und Quellen-Angabe ändern
+		\checkeditem[2.b] Typ der Quelle und Bezug ändern
+		\checkeditem[2.c] Quellen-Angabe und Bezug ändern
+		\checkeditem[2.d] Bezug ändern
+		\checkeditem[2.e] Quellen-Angabe ändern
+		\checkeditem[2.f] Typ der Quelle ändern
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Quelle Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Karte aufrufen, Vollständige Interessenpunktinformationen abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Quelle {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}

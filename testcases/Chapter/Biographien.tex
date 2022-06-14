@@ -1,0 +1,487 @@
+\begin{usecase}
+	\addtitle{Geschichte hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Hinzufügen\grqq}-Button betätigen
+		\checkeditem {\glqq Weiter\grqq}-Button betätigen
+		\checkeditem Titel-Feld ausfüllen
+		\checkeditem Geschichte-Feld mit einer Geschichte <400 Zeichen füllen
+		\checkeditem Rechte-Checkbox abhacken
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[4.a] Geschichte-Feld mit einer Geschichte >600 Zeichen füllen
+		\checkeditem[5.a] Rechte-Checkbox nicht abhacken
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten sortieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Aufsteigend\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] {\glqq Absteigend\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten vollständig anzeigen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei geeigneter Geschichte {\glqq Vollständig anzeigen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten freischalten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei nicht freigeschalteter Geschichte {\glqq Freischalten\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[0] {\glqq Vollständig anzeigen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+		
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten sperren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei freigeschalteter Geschichte {\glqq Sperren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[0] {\glqq Vollständig anzeigen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+		
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidierter Geschichte {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[0] {\glqq Vollständig anzeigen\grqq}-Button betätigen
+		\checkeditem[1.a] Bei validierter Geschichte {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten nach Validationsstatus filtern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Nur Unvalidierte\grqq}-Checkbox betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] {\glqq Nur Freischaltbare\grqq}-Checkbox betätigen
+		\checkeditem[1.b] {\glqq Nur Freischaltbare\grqq}-Checkbox und {\glqq Nur Unvalidierte\grqq}-Checkbox betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten nach Freischaltstatus filtern} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem[1.a] {\glqq Nur Freischaltbare\grqq}-Checkbox betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		
+		\checkeditem[1.b] {\glqq Nur Freischaltbare\grqq}-Checkbox und {\glqq Nur Unvalidierte\grqq}-Checkbox betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichten bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei einer Geschichte {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Titel-Feld ändern
+		\checkeditem {\glqq absenden\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Geschichte-Feld ändern
+		\checkeditem[2.b] Titel- und Geschichte-Feld ändern
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Mit Geschichten verknüpfte Einträge abrufen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei einer Geschichte {\glqq Verknüpfte Einträge anzeigen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte mit Eintrag verknüpfen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Einen Interessenpunkt aus dem DropDown-Menu auswählen und {\glqq Speicher\grqq}-Button betätigen
+	}
+	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte-Eintrag-Verknüpfung validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Validieren\grqq}-Button hinter unvalidierter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] {\glqq Validieren\grqq}-Button hinter validierter Verknüpfung betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte-Eintrag-Verknüpfung Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Löschen\grqq}-Button hinter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte-Eintrag-Verknüpfung endgültig Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen, Geschichte-Eintrag-Verknüpfung Löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Endgültig Löschen\grqq}-Button hinter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte-Eintrag-Verknüpfung wiederherstellen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen, Geschichte-Eintrag-Verknüpfung Löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Wiederherstellen\grqq}-Button hinter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte endgültig Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen, Geschichte Löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Endgültig Löschen\grqq}-Button hinter Geschichte betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Geschichte wiederherstellen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Geschichten aufrufen, Mit Geschichten verknüpfte Einträge abrufen, Geschichte Löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem {\glqq Wiederherstellen\grqq}-Button hinter Verknüpfung betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}

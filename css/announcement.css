@@ -1,0 +1,42 @@
+.dbOpenButton, .dbOpenButton:hover {
+    border-color: #d2d2d2 !important;
+}
+
+div[class^="dbContainer_"] .navbar {
+    background-color: #2c2c2c !important;
+    width: initial !important;
+    position: initial !important;
+}
+
+div[class^="dbContainer_"], div[class*="dbContainer_"] {
+    background-color: #2c2c2c !important;
+    color: #ffffff;
+}
+
+div[class^="dbContainer_"] .btn-outline-primary {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.dbCalGrid .btn-secondary {
+    padding: .25rem .5rem !important;
+    font-size: .875rem !important;;
+    line-height: 1.5 !important;;
+    border-radius: .2rem !important;;
+    border-color: #ffffff !important;;
+    color: #ffffff !important;;
+}
+
+.dbCalGrid .btn-important {
+    padding: .25rem .5rem !important;
+    font-size: .875rem !important;;
+    line-height: 1.5 !important;;
+    border-radius: .2rem !important;;
+    border-color: #ffffff !important;;
+    color: #ffffff !important;;
+}
+
+div[class^="dbContainer_"] .btn-outline-dark {
+    color: #ffffff;
+    border-color: #ffffff;
+}

@@ -1,0 +1,164 @@
+\subsection{Allgemeines} Diese Datei enthält alle Funktionen, welche die Tabelle mit Links zwischen Geschichten und Interessenpunkten benutzen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+	if (!defined('NICE_PROJECT')) {
+		die('Permission denied.');
+	}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{insertPoiStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id    & Identifikator eines Interessenpunktes \\ \hline
+		\$storytoken & alphanumerischer Identifikator einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fügt einen neuen Link zwischen einem Interessenpunkt und einer Geschichte ein. Die Funktion hat Auswirkung auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{getPoiForStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$token    & alphanumerische Identifikator einer Geschichte \\ \hline
+		\$override & Ignoriert Löschmarkierungen \\ \hline
+		\$api      & Legt fest ob Aufrufer API ist \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Links zwischen einer Geschichte und Interessenpunkten ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoiForStoryByPoiId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$poi\_id  & Identifikator eines Interessenpunktes \\ \hline
+		\$override & Ignoriert Löschmarkierungen \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt alle Links zwischen Geschichten und einem Interessenpunkt ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{getPoiForStoryByPoiId}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$story\_poi\_id  & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion den Ersteller eines Links zwischen einer Geschichte und einem Interessenpunkt ab. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist eine Zeichenkette.
+\subsubsection{deletePoiStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$story\_poi\_id  & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht einen Link zwischen einer Geschichte und einem Interessenpunkt ab. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionStateLinkPoiStoryByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte \\ \hline
+		\$state & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Link zwischen einer Geschichte und einem Interessenpunkt als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionPoiStateLinkPoiStoryByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte \\ \hline
+		\$state & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Link zwischen einer Geschichte und einem Interessenpunkt als gelöscht, aufgrund eines gelöschten Interessenpunktes. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{updateDeletionStoryStateLinkPoiStoryByID}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einem Interessenpunkt und einer Geschichte \\ \hline
+		\$state & Status der Löschung \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion markiert einen Link zwischen einer Geschichte und einem Interessenpunkt als gelöscht, aufgrund einer gelöschten Geschichte. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Es gibt einen Rückgabewert.
+\subsubsection{LinkPoiStoryRestictedPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einer Geschichte und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt ab, ob eine Restriktion der Wiederherstellung aufgrund eines gelöschten Interessenpunktes besteht. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist ein Boolean.
+\subsubsection{LinkPoiStoryRestictedStory}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$id    & Identifikator eines Links zwischen einer Geschichte und einem Interessenpunkt \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion fragt ab, ob eine Restriktion der Wiederherstellung aufgrund eines gelöschten Bildes besteht. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Der Rückgabewert ist ein Boolean.

@@ -1,0 +1,178 @@
+\subsection{Allgemeines} Diese Datei enthält alle durch die Reverse-API des Frontends aufgerufene Funktionen sowie zusätzliche Funktionen, um die Datenstrukturierung der Antworten zu vereinheitlichen.
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Einbindungspunkt} & inc-db.php \\ \hline
+		\textbf{Einbindungspunkt} & inc-db-sub.php \\ \hline
+	\end{tabular}
+\end{table}
+Die Datei ist nicht direkt durch den Nutzer aufrufbar, dies wird durch folgenden Code-Ausschnitt sichergestellt:
+\begin{lstlisting}[language=php]
+if (!defined('NICE_PROJECT')) {
+	die('Permission denied.');
+}
+\end{lstlisting}
+Der Globale Wert {\glqq NICE\_PROJECT\grqq} wird durch für den Nutzer valide Aufrufpunkte festgelegt, z.B. {\glqq api.php\grqq}.
+\newpage
+\subsection{Funktionen}
+\subsubsection{checkApiToken}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$token & Authentifikationstoken des Requests \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft, ob ein Authentifikationstoken mit dem Authentifikationstoken des Moduls übereinstimmt. Die Funktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Konfigurationsdatei
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{successfullRequest}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$input & Zusätzliche Daten (Optional)\\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion erzeugt dein Array, welches als Antwort auf eine erfolgreiche Anfrage zurückgesendet wird. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{failedRequest}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$input & Zusätzliche Daten (Optional)\\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion erzeugt dein Array, welches als Antwort auf eine erfolglose/falsche Anfrage zurückgesendet wird. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{checkForUsername}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$username & Nutzername \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion prüft, ob der gegebene Nutzername in der lokalen Datenbank vorhanden ist. Die Funktion nutzt folgende Quellen: Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{AktivateUserRapi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$json  & Array mit Daten \\ \hline
+		\$value & Aktivierungsstatus \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		username & Nutzername des zu aktivierenden Nutzers \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion aktiviert oder deaktiviert einen Nutzer. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Nutzerdaten-Tabelle
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{removePictureTokenRevApi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$json & Array mit Parametern der Anfrage \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		picToken & alphanumerischer Identifikator eines Bildes \\ \hline
+		override & schaltet direktes Löschen ein \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht Referenzen auf Bilder oder markiert diese als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+	\item Tabelle mit Interessenpunkten
+	\item Tabelle mit Validierungsinformationen zu Interessenpunkten
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{deleteStoryReference}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$json & Array mit Parametern der Anfrage \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		StoryToken & alphanumerischer Identifikator einer Geschichte \\ \hline
+		override   & schaltet direktes Löschen ein \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion löscht Referenzen auf Geschichten oder markiert diese als gelöscht. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+	\item Tabelle mit Validierungsinformationen zu Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restoreStoryRapi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$json & Array mit Parametern der Anfrage \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		StoryToken & alphanumerischer Identifikator einer Geschichte \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt als gelöscht markierte Referenzen auf Geschichten wieder her. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Geschichten und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.
+\subsubsection{restorePictureRapi}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		\$json & Array mit Parametern der Anfrage \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält folgende Elemente:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		picToken & alphanumerischer Identifikator eines Bildes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion stellt als gelöscht markierte Referenzen auf Bilder wieder her. Die Funktion hat Auswirkungen auf folgende Quellen:
+\begin{itemize}
+	\item Tabelle mit Links zwischen Bildern und Interessenpunkten
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt. Die Antwort wird als strukturiertes Array an den Aufrufer zurückgegeben.

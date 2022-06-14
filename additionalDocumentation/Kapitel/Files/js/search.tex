@@ -1,0 +1,89 @@
+\subsection{Allgemeines} Diese Datei enthält diverse Hilfsfunktionen und ermöglicht das Suchen.
+Die Ausführung des Codes findet im Browser statt. Hier wird der Trigger zum Ausführen der Suche bei Enter gesetzt, sowie zur Auswertung gesetzter Cookies:
+\begin{lstlisting}[language=JavaScript]
+$(document).ready(function () {
+	// Trigger search button on enter at search input
+	$("#search").keyup(function (e) {
+		if(e.which === 13) {
+			$("#poiSearchButton").click();
+		}
+	});
+	
+	//On pressing a key on "Search box" in "search.php" file. This function will be called.
+	$("#poiSearchButton").click(function () {
+		var name = $('#search').val();
+		if (name === "") {
+			$("#display").html("");
+			pois = null;
+		} else {
+			if (pois == null) {
+				$.ajax({
+					type: "POST",
+					contentType: "application/json",
+					url: "Formular/api.php",
+					data: JSON.stringify({
+						type: "gpu"
+					}),
+					success: create
+				});
+			} else {
+				create();
+			}
+		}
+	});
+	var OpenPersonalArea = getCookie("personalArea");
+	if (OpenPersonalArea === "1") {
+		var delayInMilliseconds = 300;
+		setTimeout(function () {
+			deleteCookie("personalArea");
+			loadPersonalArea();
+		}, delayInMilliseconds);
+	}
+});
+\end{lstlisting} 
+Auch werden hier einige in verschiedenen anderen Javascripts verwendeten Variablen festgelegt.
+\begin{lstlisting}[language=JavaScript]
+var pois = null;
+var focusComment = -1;
+\end{lstlisting} 
+\newpage
+\subsection{Funktionen}
+\subsubsection{openSearchModal}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		json & Array mit Daten \\ \hline
+	\end{tabular}
+\end{table}
+\subparagraph{\$json}Das Array enthält Einträge mit folgenden Elementen:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		name             & Namen eines Interessenpunktes  \\ \hline
+		current\_address & Aktuelle Adresse eines Interessenpunktes  \\ \hline
+		hist\_address    & historische Adresse eines Interessenpunktes (veraltet) \\ \hline
+		operator         & Betreiber eines Interessenpunktes (veraltet) \\ \hline
+		history          & Geschichte eines Interessenpunktes \\ \hline
+		lng              & Längengrad eines Interessenpunktes \\ \hline
+		lat              & Breitengrad eines Interessenpunktes \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion öffnet das Such-Modal und sucht in den gegebenen Daten. Die FUnktion nutzt folgende Quellen:
+\begin{itemize}
+	\item Frontend-API
+\end{itemize}
+Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.
+\subsubsection{focusPOI}
+\paragraph{Parameter} Die Funktion besitzt folgende Parameter:
+\begin{table}[H]
+	\begin{tabular}{|c|p{11cm}|}
+		\hline
+		\textbf{Parametername} & \textbf{Parameterbeschreibung} \\ \hline
+		lng & Längengrad \\ \hline
+		lat & Breitengrad \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{Beschreibung} Die Funktion setzt den Focus auf die gegebenen Koordinaten und schließt das Such-Modal. Es findet bei dieser Funktion kein Abruf von Daten aus {\glqq COSP\grqq} statt.

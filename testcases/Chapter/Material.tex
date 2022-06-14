@@ -1,0 +1,347 @@
+\begin{usecase}
+	\addtitle{Bild Hinzufügen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Menu {\glqq Material\grqq} öffnen
+		\checkeditem {\glqq Bild hinzufügen\grqq}-Button betätigen
+		\checkeditem Titel-Feld ausfüllen
+		\checkeditem Bilddatei auswählen
+		\checkeditem Rechtecheckbox abhacken
+		\checkeditem {\glqq Hochladen\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[3.a] Titel- und Beschreibungsfeld ausfüllen
+		\checkeditem[3.b] Nur Beschreibungsfeld ausfüllen
+		\checkeditem[5.a] Rechtecheckbox nicht anhacken
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild Größer anzeigen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Auf gewähltes Bild klicken
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild Validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Bild {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Bild {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[2.b] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild Löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Bild {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[1.a] Bei validiertem Bild {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild Bearbeiten} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei unvalidiertem Bild {\glqq Bearbeiten\grqq}-Button betätigen
+		\checkeditem Titel-Feld ändern
+		\checkeditem {\glqq Absenden\grqq}-Button betätigen
+	}
+	
+	%Extensions: Alternate scenarios of success or failure.
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Nur Beschreibungsfeld ändern
+		\checkeditem[2.b] Beschreibungs- und Titelfeld ändern
+	}
+	
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild und Interessenpunkt verknüpfen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Verknüpfte Einträge anzeigen\grqq}-Button betätigen
+		\checkeditem zu verknüpfenden Interessenpunkt auswählen
+		\checkeditem {\glqq Speichern\grqq}-Button betätigen
+	}	
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Verknüpfung zwischen Bild und Interessenpunkt validieren} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Verknüpfte Einträge anzeigen\grqq}-Button betätigen
+		\checkeditem Bei bestehender unvalidierter Verknüpfung {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}	
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Bei bestehender validierter Verknüpfung {\glqq Validieren\grqq}-Button betätigen
+		\checkeditem[3.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Verknüpfung zwischen Bild und Interessenpunkt löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Endnutzer, Mitarbeiter, Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Verknüpfte Einträge anzeigen\grqq}-Button betätigen
+		\checkeditem Bei bestehender unvalidierter Verknüpfung {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}	
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] Bei bestehender validierter Verknüpfung {\glqq Löschen\grqq}-Button betätigen
+		\checkeditem[3.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Verknüpfung zwischen Bild und Interessenpunkt endgültig löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen, Verknüpfung zwischen Bild und Interessenpunkt löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Verknüpfte Einträge anzeigen\grqq}-Button betätigen
+		\checkeditem Bei Verknüpfung {\glqq Endgültig Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}	
+
+	\addscenario{Erweiterung:}{
+		\checkeditem[3.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Verknüpfung zwischen Bild und Interessenpunkt wiederherstellen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen, Verknüpfung zwischen Bild und Interessenpunkt löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Verknüpfte Einträge anzeigen\grqq}-Button betätigen
+		\checkeditem Bei Verknüpfung {\glqq Wiederherstellen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}	
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[3.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild wiederherstellen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen, Bild löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Wiederherstellen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}	
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}
+
+\newpage
+\begin{usecase}
+	\addtitle{Bild endgültig löschen} 
+	
+	%Primary Actor: Calls on the system to deliver its services.
+	\addfield{Benutzer:}{Admin}
+	\addfield{Endbenutzergruppen:}{Freigeschaltet}
+	
+	%Preconditions: What must be true on start and worth telling the reader?
+	\addfield{Vorbedingungen:}{Login erfolgreich, Archiv aufrufen, Bild Löschen}
+	%when multiple
+	%\additemizedfield{Preconditions:}{} 
+	
+	%Main Success Scenario: A typical, unconditional happy path scenario of success.
+	\addscenario{Szenario:}{
+		\checkeditem Bei Bild {\glqq Endgültig Löschen\grqq}-Button betätigen
+		\checkeditem {\glqq OK\grqq}-Button betätigen
+	}	
+	
+	\addscenario{Erweiterung:}{
+		\checkeditem[2.a] {\glqq Abbrechen\grqq}-Button betätigen
+	}
+	%Miscellaneous: Such as open issues/questions
+	%\addfield{Open Issues:}{}
+	
+\end{usecase}

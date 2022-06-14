@@ -1,0 +1,14 @@
+﻿schwarz 000000
+grau1 2c2c2c
+grau2 3b3b3b
+grau3 464646
+
+grün 66a841
+grün2 7dc256
+grün3 435e34
+
+gellb fec018
+gelb2 ffd35b
+
+weiß ffffff
+weiß2 d2d2d2
