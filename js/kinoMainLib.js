@@ -86,6 +86,8 @@ function sendApiRequest(json, reload) {
  * @returns {array} is in json form and is already parsed
  */
 function asyncApiRequest(json, callback) {
+    var csrfToken = document.getElementById('TokenScriptCSRF').value;
+    json.csrf = csrfToken;
     sendRequestPromise(json).then(function (result) {
         if (typeof callback == "function"){
             callback(result);
